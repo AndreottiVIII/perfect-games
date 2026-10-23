@@ -62,7 +62,7 @@ def main():
     n27 = g[g.n == 27].iloc[0]
     ax.plot([27], [n27.survival], 'o', ms=7, color=INK, mec=SURFACE, mew=1.5, zorder=6)
     NL = chr(10)
-    ax.annotate(NL.join(['Totale: dopo 27 battitori ancora perfette 1 su 17.500', "(21 partite perfette, piu' Haddix e Martinez, fermati dopo)"]),
+    ax.annotate(NL.join(['Totale: dopo 27 battitori ancora perfette 1 su 17.500', '(21 partite perfette, più Haddix e Martinez, fermati dopo)']),
                 xy=(27, n27.survival), xytext=(26.3, n27.survival * 0.32),
                 color=INK, fontsize=9.5, va='top', ha='right', zorder=7,
                 arrowprops=dict(arrowstyle='-', color=INK, lw=1, shrinkA=0, shrinkB=4))
@@ -73,7 +73,7 @@ def main():
 
     # legenda dei decenni (rampa chiara = piu' vecchio, scura = piu' recente)
     lx, ly0 = 0.60, 0.93
-    ax.text(lx, ly0 + 0.002, "Decennio (colore piu' scuro = piu' recente)", transform=ax.transAxes,
+    ax.text(lx, ly0 + 0.002, 'Decennio (colore più scuro = più recente)', transform=ax.transAxes,
             color=INK2, fontsize=9.5, va='bottom', ha='left')
     for i, (dcd, col) in enumerate(zip(decades, cols)):
         r, c = i % 7, i // 7
