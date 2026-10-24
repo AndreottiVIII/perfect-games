@@ -1,0 +1,75 @@
+site,nome,citta
+ANA01,Angel Stadium,Anaheim
+ARL01,Arlington Stadium,Arlington
+ARL02,The Ballpark in Arlington,Arlington
+ARL03,Globe Life Field,Arlington
+ATL01,Atlanta-Fulton County Stadium,Atlanta
+ATL02,Turner Field,Atlanta
+ATL03,Truist Park,Atlanta
+BAL11,Memorial Stadium,Baltimora
+BAL12,Camden Yards,Baltimora
+BOS05,South End Grounds,Boston
+BOS07,Fenway Park,Boston
+BOS08,Braves Field,Boston
+CHI08,West Side Grounds,Chicago
+CHI10,Comiskey Park,Chicago
+CHI11,Wrigley Field,Chicago
+CHI12,Guaranteed Rate Field,Chicago
+CIN07,Crosley Field,Cincinnati
+CIN08,Riverfront Stadium,Cincinnati
+CIN09,Great American Ball Park,Cincinnati
+CLE05,League Park (prima versione),Cleveland
+CLE06,League Park,Cleveland
+CLE07,Cleveland Stadium,Cleveland
+CLE08,Progressive Field,Cleveland
+DEN02,Coors Field,Denver
+DET04,Tiger Stadium,Detroit
+DET05,Comerica Park,Detroit
+HOU02,Astrodome,Houston
+HOU03,Minute Maid Park,Houston
+KAN05,Municipal Stadium,Kansas City
+KAN06,Kauffman Stadium,Kansas City
+LOS01,Memorial Coliseum,Los Angeles
+LOS03,Dodger Stadium,Los Angeles
+MIA01,Joe Robbie Stadium,Miami
+MIA02,loanDepot park,Miami
+MIL05,County Stadium,Milwaukee
+MIL06,American Family Field,Milwaukee
+MIN02,Metropolitan Stadium,Bloomington
+MIN03,Metrodome,Minneapolis
+MIN04,Target Field,Minneapolis
+MON01,Jarry Park,Montréal
+MON02,Stade Olympique,Montréal
+NYC10,Polo Grounds (terza versione),New York
+NYC13,Hilltop Park,New York
+NYC14,Polo Grounds,New York
+NYC15,Ebbets Field,New York
+NYC16,Yankee Stadium (1923-2008),New York
+NYC17,Shea Stadium,New York
+NYC20,Citi Field,New York
+NYC21,Yankee Stadium (dal 2009),New York
+OAK01,Oakland Coliseum,Oakland
+PHI09,Baker Bowl,Filadelfia
+PHI11,Shibe Park,Filadelfia
+PHI12,Veterans Stadium,Filadelfia
+PHI13,Citizens Bank Park,Filadelfia
+PHO01,Chase Field,Phoenix
+PIT06,Forbes Field,Pittsburgh
+PIT07,Three Rivers Stadium,Pittsburgh
+PIT08,PNC Park,Pittsburgh
+SAN01,Jack Murphy Stadium,San Diego
+SAN02,Petco Park,San Diego
+SEA02,Kingdome,Seattle
+SEA03,T-Mobile Park,Seattle
+SFO02,Candlestick Park,San Francisco
+SFO03,Oracle Park,San Francisco
+STL05,Robison Field,St. Louis
+STL07,Sportsman's Park,St. Louis
+STL09,Busch Stadium (1966-2005),St. Louis
+STL10,Busch Stadium (dal 2006),St. Louis
+STP01,Tropicana Field,St. Petersburg
+TOR01,Exhibition Stadium,Toronto
+TOR02,Rogers Centre,Toronto
+WAS09,Griffith Stadium,Washington
+WAS10,RFK Stadium,Washington
+WAS11,Nationals Park,Washington

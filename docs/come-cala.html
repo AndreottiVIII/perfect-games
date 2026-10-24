@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Come cala · Perfect games</title>
+<meta name="description" content="A ogni battitore la partita perfetta ha circa 1 probabilità su 3 di finire; cala solo quando batte il lanciatore.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">Perfect games</a>
+  <nav aria-label="Pagine">
+    <a href="index.html">La curva</a>
+    <a href="come-cala.html" aria-current="page">Come cala</a>
+    <a href="giornata-di-grazia.html">Giornata di grazia</a>
+    <a href="chicche.html">Chicche</a>
+    <a href="partite.html">Le 21 partite</a>
+    <a href="stadi.html">Gli stadi</a>
+  </nav>
+</header>
+
+<main>
+  <h1>A ogni battitore la partita perfetta ha circa 1 probabilità su 3 di finire. Cala solo quando batte il lanciatore.</h1>
+  <p class="lead">Prendiamo tutte le squadre ancora perfette arrivate a un certo battitore e guardiamo quante perdono la perfezione proprio lì. Separiamo le squadre al bat con il DH (battitore designato: uno che batte al posto del lanciatore) da quelle senza, dove in formazione batte anche il lanciatore.</p>
+
+  <figure class="chart" id="grafico-come-cala">
+    <figcaption>
+      <strong>Probabilità di perdere la partita perfetta proprio a quel battitore</strong>
+      <span class="note">Le colonne grigie sono i battitori 9, 18 e 27: finché nessuno arriva in base, sono sempre il nono della formazione. I trattini verticali mostrano il margine di incertezza (intervallo al 95%).</span>
+    </figcaption>
+    <div class="legend">
+      <span class="key"><span class="swatch" style="border-color:#b3261e"></span>Senza DH: batte il lanciatore</span>
+      <span class="key"><span class="swatch" style="border-color:#2b2b2b"></span>Con DH</span>
+      <span class="key"><span class="dot"></span>Meno di 100 squadre ancora in gioco: dato incerto</span>
+    </div>
+    <div class="plot"></div>
+  </figure>
+
+  <ul class="points">
+    <li>Per i primi 17 battitori la probabilità sta quasi sempre tra il 29% e il 36%: circa 1 su 3. Al primo battitore è il 35,5% senza DH e il 34,0% con DH.</li>
+    <li>Il calo ai battitori 9, 18 e 27 è il lanciatore che batte. Senza DH il nono della formazione rompe la perfezione il 19,5% delle volte, contro il 34,6% degli altri otto; quando succede, a battere era il lanciatore 96 volte su 100.</li>
+    <li>Con il DH il buco quasi sparisce: 28,5% contro 33,2%. Resta un piccolo calo perché il nono è comunque il battitore più debole.</li>
+    <li>Il terzo giro della formazione non aiuta chi batte: gli stessi battitori arrivano in base un po’ meno spesso, non di più. A quel punto restano in campo solo i lanciatori che hanno una giornata eccezionale.</li>
+    <li>Più a destra i numeri ballano: al 27° battitore arrivano solo 19 squadre senza DH e 16 con DH. Per questo quei punti sono vuoti e la linea è più chiara.</li>
+  </ul>
+
+  <h2>Come finisce il sogno</h2>
+  <p class="note">Il primo battitore che arriva in base: come ci arriva, in percentuale.</p>
+  <!-- build:tabella-eventi -->
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Come arriva in base il primo</th>
+<th class="num">Tutte</th>
+<th class="num">Dal 10° al 18°</th>
+<th class="num">Dal 19° al 27°</th>
+</tr></thead><tbody>
+<tr><td>Singolo</td><td class="num">48,3%</td><td class="num">51,7%</td><td class="num">52,5%</td></tr>
+<tr><td>Doppio o triplo</td><td class="num">14,6%</td><td class="num">14,6%</td><td class="num">17,6%</td></tr>
+<tr><td>Fuoricampo</td><td class="num">5,9%</td><td class="num">6,5%</td><td class="num">4,1%</td></tr>
+<tr><td>Base su ball</td><td class="num">25,5%</td><td class="num">21,0%</td><td class="num">17,0%</td></tr>
+<tr><td>Colpito dal lancio</td><td class="num">1,9%</td><td class="num">1,9%</td><td class="num">2,4%</td></tr>
+<tr><td>Errore della difesa</td><td class="num">3,6%</td><td class="num">4,1%</td><td class="num">6,5%</td></tr>
+<tr><td>Altro (interferenza e simili)</td><td class="num">0,2%</td><td class="num">0,3%</td><td class="num">0,0%</td></tr>
+<tr><td><strong>Casi</strong></td><td class="num"><strong>402.161</strong></td><td class="num"><strong>12.178</strong></td><td class="num"><strong>465</strong></td></tr>
+</tbody></table></div>
+<!-- /build:tabella-eventi -->
+  <ul class="points">
+    <li>Quasi metà delle volte (48,3%) la perfezione finisce con un singolo, un quarto delle volte (25,5%) con una base su ball.</li>
+    <li>Nelle rotture tardive, dal 19° al 27° battitore (465 casi), le basi su ball scendono al 17,0% e gli errori della difesa salgono al 6,5%. Chi è in serie lunga non regala niente: la perfezione muore per un colpo vero o per un errore.</li>
+    <li>Nel tempo cambia il modo: i fuoricampo passano dal 2,3% delle rotture (1908-1945) al 9,7% (2009-2025), gli errori dal 5,3% al 2,3%.</li>
+    <li>Le 12 volte che è finita proprio al 27° battitore: 6 singoli, 2 doppi, 2 colpiti dal lancio, 1 base su ball, 1 fuoricampo (vedi <a href="partite.html">Le 21 partite</a>).</li>
+  </ul>
+
+  <details id="numeri-come-cala" class="data">
+    <summary>I numeri del grafico</summary>
+    <div class="body"></div>
+  </details>
+
+  <details>
+    <summary>Come l’abbiamo calcolato</summary>
+    <div class="body">
+      <p>Per ogni battitore n contiamo le squadre “a rischio”: quelle che hanno eliminato i primi n-1 battitori e sono ancora in partita. La probabilità è la quota di queste che vede arrivare in base proprio il battitore n. Il margine di incertezza è l’intervallo di Wilson al 95%.</p>
+      <p>“Con DH” vuol dire che la squadra al bat aveva un battitore designato nella formazione iniziale. Stessi dati della pagina <a href="index.html">La curva</a>: 402.184 squadre al lancio, 1908-2025.</p>
+      <p>Finché nessuno arriva in base, il battitore n è sempre allo stesso posto della formazione e nello stesso giro (dal 1° al 9° il primo giro, dal 10° al 18° il secondo, dal 19° al 27° il terzo). Un modello statistico con un effetto per il posto e uno per il giro descrive bene i dati: nel secondo e nel terzo giro gli stessi battitori arrivano in base meno spesso (rapporto 0,94 e 0,88 senza DH).</p>
+      <p>Programma: <code>src/come_cala.py</code>; i numeri completi sono in <code>output/come_cala.md</code>.</p>
+    </div>
+  </details>
+</main>
+
+<footer>
+  <p>Dati: Retrosheet, stagione regolare 1908-2025. Programmi e risultati: <a href="https://github.com/AndreottiVIII/perfect-games">github.com/AndreottiVIII/perfect-games</a>.</p>
+  <p lang="en">The information used here was obtained free of charge from and is copyrighted by Retrosheet. Interested parties may contact Retrosheet at "www.retrosheet.org".</p>
+</footer>
+
+<!-- build:dati-come-cala -->
+<script type="application/json" id="dati-come-cala">{"min_rischio":100,"senza_dh":[{"n":1,"h":0.35461,"lo":0.35282,"hi":0.356403,"r":273887,"k":97123},{"n":2,"h":0.339402,"lo":0.337198,"hi":0.341613,"r":176764,"k":59994},{"n":3,"h":0.36291,"lo":0.360157,"hi":0.365672,"r":116770,"k":42377},{"n":4,"h":0.354039,"lo":0.35061,"hi":0.357483,"r":74393,"k":26338},{"n":5,"h":0.331953,"lo":0.327756,"hi":0.336177,"r":48055,"k":15952},{"n":6,"h":0.318724,"lo":0.313649,"hi":0.323843,"r":32103,"k":10232},{"n":7,"h":0.307256,"lo":0.301176,"hi":0.313404,"r":21871,"k":6720},{"n":8,"h":0.295162,"lo":0.287952,"hi":0.302476,"r":15151,"k":4472},{"n":9,"h":0.195243,"lo":0.187835,"hi":0.20287,"r":10679,"k":2085},{"n":10,"h":0.334187,"lo":0.32429,"hi":0.344232,"r":8594,"k":2872},{"n":11,"h":0.343761,"lo":0.331563,"hi":0.356169,"r":5722,"k":1967},{"n":12,"h":0.344341,"lo":0.329309,"hi":0.359691,"r":3755,"k":1293},{"n":13,"h":0.323314,"lo":0.305126,"hi":0.342054,"r":2462,"k":796},{"n":14,"h":0.310924,"lo":0.289154,"hi":0.333565,"r":1666,"k":518},{"n":15,"h":0.315331,"lo":0.289106,"hi":0.342788,"r":1148,"k":362},{"n":16,"h":0.27551,"lo":0.245388,"hi":0.307822,"r":784,"k":216},{"n":17,"h":0.301056,"lo":0.264771,"hi":0.340014,"r":568,"k":171},{"n":18,"h":0.18136,"lo":0.146569,"hi":0.222259,"r":397,"k":72},{"n":19,"h":0.347692,"lo":0.297967,"hi":0.400976,"r":325,"k":113},{"n":20,"h":0.235849,"lo":0.183719,"hi":0.297382,"r":212,"k":50},{"n":21,"h":0.358025,"lo":0.288273,"hi":0.434354,"r":162,"k":58},{"n":22,"h":0.326923,"lo":0.244338,"hi":0.421839,"r":104,"k":34},{"n":23,"h":0.357143,"lo":0.255032,"hi":0.474118,"r":70,"k":25},{"n":24,"h":0.355556,"lo":0.232189,"hi":0.501645,"r":45,"k":16},{"n":25,"h":0.206897,"lo":0.0984594,"hi":0.383904,"r":29,"k":6},{"n":26,"h":0.173913,"lo":0.0697854,"hi":0.371381,"r":23,"k":4},{"n":27,"h":0.368421,"lo":0.191493,"hi":0.589608,"r":19,"k":7}],"con_dh":[{"n":1,"h":0.339953,"lo":0.337366,"hi":0.34255,"r":128297,"k":43615},{"n":2,"h":0.328748,"lo":0.325591,"hi":0.331919,"r":84682,"k":27839},{"n":3,"h":0.342997,"lo":0.339106,"hi":0.34691,"r":56843,"k":19497},{"n":4,"h":0.334922,"lo":0.330153,"hi":0.339726,"r":37346,"k":12508},{"n":5,"h":0.317135,"lo":0.311376,"hi":0.32295,"r":24838,"k":7877},{"n":6,"h":0.315724,"lo":0.308772,"hi":0.322761,"r":16961,"k":5355},{"n":7,"h":0.309581,"lo":0.301234,"hi":0.318054,"r":11606,"k":3593},{"n":8,"h":0.287907,"lo":0.278097,"hi":0.297921,"r":8013,"k":2307},{"n":9,"h":0.286015,"lo":0.274436,"hi":0.297881,"r":5706,"k":1632},{"n":10,"h":0.32327,"lo":0.309079,"hi":0.337793,"r":4074,"k":1317},{"n":11,"h":0.314835,"lo":0.297766,"hi":0.33242,"r":2757,"k":868},{"n":12,"h":0.323981,"lo":0.303252,"hi":0.345424,"r":1889,"k":612},{"n":13,"h":0.302271,"lo":0.277706,"hi":0.328022,"r":1277,"k":386},{"n":14,"h":0.319865,"lo":0.290068,"hi":0.351209,"r":891,"k":285},{"n":15,"h":0.29703,"lo":0.262018,"hi":0.334598,"r":606,"k":180},{"n":16,"h":0.2723,"lo":0.232204,"hi":0.316467,"r":426,"k":116},{"n":17,"h":0.287097,"lo":0.239582,"hi":0.339824,"r":310,"k":89},{"n":18,"h":0.262443,"lo":0.208851,"hi":0.324154,"r":221,"k":58},{"n":19,"h":0.269939,"lo":0.207666,"hi":0.342806,"r":163,"k":44},{"n":20,"h":0.294118,"lo":0.219723,"hi":0.38139,"r":119,"k":35},{"n":21,"h":0.357143,"lo":0.262992,"hi":0.463789,"r":84,"k":30},{"n":22,"h":0.222222,"lo":0.131953,"hi":0.349389,"r":54,"k":12},{"n":23,"h":0.238095,"lo":0.134808,"hi":0.385278,"r":42,"k":10},{"n":24,"h":0.21875,"lo":0.110237,"hi":0.387553,"r":32,"k":7},{"n":25,"h":0.24,"lo":0.114962,"hi":0.434301,"r":25,"k":6},{"n":26,"h":0.157895,"lo":0.0552037,"hi":0.375659,"r":19,"k":3},{"n":27,"h":0.3125,"lo":0.141644,"hi":0.555961,"r":16,"k":5}]}</script>
+<!-- /build:dati-come-cala -->
+<script src="charts.js"></script>
+</body>
+</html>

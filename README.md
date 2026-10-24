@@ -37,6 +37,42 @@ Risultati: `output/curve_overall.csv`, `output/curve_by_decade.csv` (con anche l
 condizionata `hazard` che l'n-esimo battitore sia il primo a salire in base),
 `output/curve_by_decade.png` e `.svg`.
 
+### Le analisi successive
+
+```
+python -I src/come_cala.py data/streaks.csv data/pa_tally.csv output
+python -I src/come_cala_chart.py output/come_cala_hazard.csv output
+python -I src/chicche.py data/streaks.csv output
+```
+
+- `src/come_cala.py`: come cala la curva battitore per battitore (con e senza DH), il modello
+  "ogni battitore indipendente" e come finisce la perfezione. Scrive `output/come_cala_*.csv`;
+  testo dei risultati in `output/come_cala.md`. `data/pa_tally.csv` lo crea `build_streaks.py`.
+- `src/come_cala_chart.py`: il grafico `output/come_cala.png` / `.svg`.
+- `src/chicche.py`: le statistiche nascoste (pinch hitter, stadi, specialisti...). Scrive
+  `output/chicche_perfette.csv` e `output/chicche_parchi.csv`; testo in `output/chicche.md`.
+  Serve anche scipy.
+- `src/ca_common.py`: funzioni comuni (caricamento dei dati con le esclusioni, intervalli).
+
+## Il sito
+
+Il sito sta nella cartella `docs/` (GitHub Pages: ramo main, cartella /docs). Sei pagine:
+La curva, Come cala, Giornata di grazia, Chicche, Le 21 partite, Gli stadi.
+
+- Le pagine HTML (`docs/*.html`), lo stile (`docs/style.css`) e i grafici (`docs/charts.js`,
+  JavaScript semplice, nessuna libreria) sono scritti a mano.
+- `src/build_site.py` legge i risultati in `output/` e `data/streaks.csv`, scrive i dati dei
+  grafici in `docs/data/*.json` e li inserisce nelle pagine insieme alle tabelle (le 21 partite,
+  le quasi perfette, le epoche, gli stadi). Cambia solo cio' che sta tra i segnaposto
+  `<!-- build:... -->` e `<!-- /build:... -->`.
+- `src/stadi_nomi.csv`: nomi degli stadi per codice Retrosheet (scritto a mano).
+
+Per rifare il sito dopo aver rifatto le analisi:
+
+```
+python src\build_site.py
+```
+
 ## Nota: la partita di Galarraga
 
 Il 2 giugno 2010 Armando Galarraga (Detroit, contro Cleveland) eliminò 26 battitori; al 27esimo
