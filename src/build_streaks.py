@@ -82,6 +82,10 @@ def classify(event):
 
     # --- eliminazioni in campo (iniziano con un numero di ruolo)
     if head[0].isdigit():
+        # errore dopo un tocco di un altro difensore (es. 6E3): il battitore e' salvo
+        # anche se l'avanzamento B-1 e' sottinteso
+        if re.search(r'E\d', head) and not re.search(r'(?:^|;)BX', adv):
+            return True, True, 'errore'
         if batter_adv_safe:
             return True, True, 'altro_in_base'
         if 'FO' in mods and 'GDP' not in mods and 'GTP' not in mods:

@@ -54,6 +54,21 @@ python -I src/chicche.py data/streaks.csv output
   Serve anche scipy.
 - `src/ca_common.py`: funzioni comuni (caricamento dei dati con le esclusioni, intervalli).
 
+### La tortura dei dati
+
+```
+python -I src/tortura_extract.py data/raw data
+python -I src/tortura_check.py data
+python -I src/verifiche.py data output
+python -I src/tortura.py pari data output
+python -I src/tortura.py dispari data output
+python -I src/tortura.py riepilogo data output
+python -I src/tortura_extra.py data output
+```
+
+- `src/tortura_extract.py` rilegge i file Retrosheet e scrive `data/pa_streak.csv` (un turno per riga nelle serie perfette), `side_extra.csv`, `pitcher_game.csv`, `team_game.csv`. Il resto (`tortura_lib.py`, `verifiche.py`, `tortura.py`, `tortura_extra.py`, `tortura_check.py`) li usa.
+- Regola: stagioni pari = scoperta, dispari = conferma; le ipotesi sono in `output/tortura_ipotesi.md`. Risultati: `output/verifiche.md` e `output/tortura.md`.
+
 ## Il sito
 
 Il sito sta nella cartella `docs/` (GitHub Pages: ramo main, cartella /docs). Sei pagine:
