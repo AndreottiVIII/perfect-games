@@ -1,97 +1,98 @@
 <!doctype html>
-<html lang="it">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>La curva · Perfect games</title>
-<meta name="description" content="Ogni partita di baseball nasce perfetta: quante restano tali, battitore dopo battitore, dal 1908 al 2025.">
+<title>The curve · Perfect games</title>
+<meta name="description" content="Every baseball game starts out perfect. How many stay that way, batter by batter, from 1908 to 2025.">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header class="top">
   <a class="brand" href="index.html">Perfect games</a>
-  <nav aria-label="Pagine">
-    <a href="index.html" aria-current="page">La curva</a>
-    <a href="come-cala.html">Come cala</a>
-    <a href="giornata-di-grazia.html">Giornata di grazia</a>
-    <a href="chicche.html">Chicche</a>
-    <a href="partite.html">Le 21 partite</a>
-    <a href="stadi.html">Gli stadi</a>
+  <nav aria-label="Pages">
+    <a href="index.html" aria-current="page">The curve</a>
+    <a href="how-it-falls.html">How it falls</a>
+    <a href="grace-days.html">Grace days</a>
+    <a href="hidden-gems.html">Hidden gems</a>
+    <a href="the-21-games.html">The 21 games</a>
+    <a href="ballparks.html">Ballparks</a>
+    <a href="torture-test.html">Torture test</a>
   </nav>
 </header>
 
 <main>
-  <h1>Ogni partita nasce perfetta. Dopo 9 battitori lo è ancora 1 su 32, dopo 27 solo 1 su 17.457.</h1>
-  <p class="lead">Un perfect game (partita perfetta) è una partita in cui nessuno dei 27 battitori avversari arriva in base: 27 eliminati su 27. Ogni partita comincia così. Qui contiamo, per ogni squadra al lancio (quella in difesa) in ogni partita di stagione regolare dal 1908 al 2025, quanti battitori avversari vengono eliminati di fila prima che il primo arrivi in base.</p>
+  <h1>Every game starts out perfect. After 9 batters, 1 in 32 still is. After 27, just 1 in 17,457.</h1>
+  <p class="lead">A perfect game is one where none of the 27 opposing batters reaches base: 27 up, 27 down. Every game begins that way. For each team in the field (the pitching side) in every regular-season game from 1908 to 2025, we count how many opposing batters it retires in a row before the first one reaches base.</p>
 
   <figure class="chart" id="grafico-curva">
     <figcaption>
-      <strong>Quante partite sono ancora perfette dopo ogni battitore</strong>
-      <span class="note">Scala logaritmica: ogni riga della griglia indica partite dieci volte più rare.</span>
+      <strong>How many games are still perfect after each batter</strong>
+      <span class="note">Log scale: each gridline marks games ten times rarer than the one above.</span>
     </figcaption>
     <div class="legend">
-      <span class="key"><span class="swatch thick" style="border-color:#b3261e"></span>Tutte le partite, 1908-2025</span>
-      <span class="key"><span class="swatch" style="border-color:#bdbdbd"></span>Le sette epoche</span>
+      <span class="key"><span class="swatch thick" style="border-color:#b3261e"></span>All games, 1908-2025</span>
+      <span class="key"><span class="swatch" style="border-color:#bdbdbd"></span>The seven eras</span>
     </div>
     <div class="eras"></div>
     <div class="plot"></div>
   </figure>
 
   <ul class="points">
-    <li>Su 402.184 squadre al lancio, dopo 9 battitori (un giro completo della formazione) la partita è ancora perfetta 1 volta su 32; dopo 18, 1 su 826; dopo 27, 1 su 17.457.</li>
-    <li>Sulla scala logaritmica la curva è quasi una retta: a ogni battitore la partita perfetta perde più o meno la stessa quota, circa un terzo. Il perché è nella pagina <a href="come-cala.html">Come cala</a>.</li>
-    <li>Le epoche si somigliano molto. Negli anni dei lanciatori (1961-1972) e dal 2010 dopo 9 battitori è ancora perfetta 1 partita su 27; tra il 1920 e il 1941, quando si segnava di più, 1 su 39.</li>
-    <li>Dopo 27 battitori i casi sono pochissimi: 21 perfect game in 118 stagioni (20 ufficiali più quello di Galarraga, vedi <a href="partite.html">Le 21 partite</a>). Per questo le linee delle epoche si fermano prima, quando restano meno di 30 squadre ancora perfette.</li>
+    <li>Out of 402,184 pitching sides, the game is still perfect after 9 batters (once through the lineup) 1 time in 32; after 18, 1 in 826; after 27, 1 in 17,457.</li>
+    <li>On the log scale the curve is almost a straight line: with every batter the perfect game loses roughly the same share, about a third. Why is on the <a href="how-it-falls.html">How it falls</a> page.</li>
+    <li>The eras look a lot alike. In the pitchers’ years (1961-1972) and since 2010, 1 game in 27 is still perfect after 9 batters; between 1920 and 1941, when teams scored more, 1 in 39.</li>
+    <li>By batter 27 there are hardly any cases left: 21 perfect games in 118 seasons (20 official ones plus Galarraga’s, see <a href="the-21-games.html">The 21 games</a>). That is why the era lines stop earlier, once fewer than 30 sides are still perfect.</li>
   </ul>
 
-  <h2>Le sette epoche</h2>
+  <h2>The seven eras</h2>
   <!-- build:tabella-epoche -->
 <div class="table-wrap"><table>
 <thead><tr>
-<th>Epoca</th>
-<th>Che baseball era</th>
-<th class="num">Squadre al lancio</th>
-<th class="num">Perfette dopo 9</th>
-<th class="num">Dopo 18</th>
-<th class="num">Perfect game</th>
+<th>Era</th>
+<th>What baseball was like</th>
+<th class="num">Pitching sides</th>
+<th class="num">Still perfect after 9</th>
+<th class="num">After 18</th>
+<th class="num">Perfect games</th>
 </tr></thead><tbody>
-<tr><td>1908-1919</td><td>palla morta</td><td class="num">31.096</td><td class="num">1 su 37</td><td class="num">1 su 888</td><td class="num">1</td></tr>
-<tr><td>1920-1941</td><td>palla viva, tra le due guerre</td><td class="num">51.330</td><td class="num">1 su 39</td><td class="num">1 su 1.006</td><td class="num">1</td></tr>
-<tr><td>1942-1960</td><td>guerra e dopoguerra</td><td class="num">43.648</td><td class="num">1 su 35</td><td class="num">1 su 970</td><td class="num">0</td></tr>
-<tr><td>1961-1972</td><td>anni dei lanciatori, senza DH</td><td class="num">40.852</td><td class="num">1 su 27</td><td class="num">1 su 606</td><td class="num">3</td></tr>
-<tr><td>1973-1992</td><td>arriva il DH in Lega Americana</td><td class="num">81.432</td><td class="num">1 su 31</td><td class="num">1 su 811</td><td class="num">4</td></tr>
-<tr><td>1993-2009</td><td>anni dei fuoricampo</td><td class="num">79.140</td><td class="num">1 su 34</td><td class="num">1 su 1.002</td><td class="num">5</td></tr>
-<tr><td>2010-2025</td><td>anni degli strikeout</td><td class="num">74.686</td><td class="num">1 su 27</td><td class="num">1 su 685</td><td class="num">7</td></tr>
+<tr><td>1908-1919</td><td>dead ball</td><td class="num">31,096</td><td class="num">1 in 37</td><td class="num">1 in 888</td><td class="num">1</td></tr>
+<tr><td>1920-1941</td><td>live ball, between the wars</td><td class="num">51,330</td><td class="num">1 in 39</td><td class="num">1 in 1,006</td><td class="num">1</td></tr>
+<tr><td>1942-1960</td><td>war and postwar</td><td class="num">43,648</td><td class="num">1 in 35</td><td class="num">1 in 970</td><td class="num">0</td></tr>
+<tr><td>1961-1972</td><td>the pitchers’ years, no DH</td><td class="num">40,852</td><td class="num">1 in 27</td><td class="num">1 in 606</td><td class="num">3</td></tr>
+<tr><td>1973-1992</td><td>the DH arrives in the American League</td><td class="num">81,432</td><td class="num">1 in 31</td><td class="num">1 in 811</td><td class="num">4</td></tr>
+<tr><td>1993-2009</td><td>the home run years</td><td class="num">79,140</td><td class="num">1 in 34</td><td class="num">1 in 1,002</td><td class="num">5</td></tr>
+<tr><td>2010-2025</td><td>the strikeout years</td><td class="num">74,686</td><td class="num">1 in 27</td><td class="num">1 in 685</td><td class="num">7</td></tr>
 </tbody></table></div>
 <!-- /build:tabella-epoche -->
-  <p class="note">DH (battitore designato): un battitore che batte al posto del lanciatore; in Lega Americana dal 1973, in tutte e due le leghe dal 2022. Strikeout: eliminazione al terzo strike.</p>
+  <p class="note">DH (designated hitter): a hitter who bats in place of the pitcher; in the American League since 1973, in both leagues since 2022.</p>
 
   <details id="numeri-curva" class="data">
-    <summary>I numeri del grafico</summary>
+    <summary>The numbers behind the chart</summary>
     <div class="body"></div>
   </details>
 
   <details>
-    <summary>Come l’abbiamo calcolato</summary>
+    <summary>How we worked it out</summary>
     <div class="body">
-      <p>Fonte: i file “evento” di Retrosheet, la cronaca azione per azione di ogni partita. Usiamo la stagione regolare di Lega Americana, Lega Nazionale e Federal League (1914-1915): due righe per partita, una per squadra al lancio, 402.184 in tutto.</p>
-      <p>Sono escluse le partite che Retrosheet ha ricostruito dal tabellino finale invece che da una cronaca vera, e le leghe afroamericane.</p>
-      <p>Se la partita finisce prima che qualcuno arrivi in base (partita accorciata dalla pioggia, o squadra di casa che vince senza battere nel nono inning), quella squadra conta come ancora perfetta fino all’ultimo battitore affrontato e poi esce dal conto (metodo di Kaplan-Meier).</p>
-      <p>Il valore a 27 battitori (1 su 17.457) comprende anche Harvey Haddix (1959) e Pedro Martínez (1995), che superarono i 27 eliminati ma persero la perfezione negli inning supplementari: 23 casi in tutto.</p>
-      <p>La partita di Armando Galarraga (2 giugno 2010) è contata come perfetta per scelta di Davide: l’arbitro sbagliò la chiamata sul 27° battitore e lo ammise, ma l’MLB non la riconosce come perfect game.</p>
-      <p>Epoche: invece di 12 decenni quasi identici usiamo sette periodi che corrispondono a cambi del gioco. Fino al 1919 la palla morta (pochi fuoricampo); dal 1920 la palla viva; dal 1942 la guerra e il dopoguerra; dal 1961 l’espansione e gli anni dei lanciatori; dal 1973 il DH in Lega Americana; dal 1993 l’espansione e gli anni dei fuoricampo; dal 2010 gli anni degli strikeout.</p>
-      <p>Programmi: <code>src/curve.py</code> (curva generale) e <code>src/build_site.py</code> (epoche e sito).</p>
+      <p>Source: Retrosheet’s “event files”, the play-by-play of each game. We use the regular season of the American League, the National League and the Federal League (1914-1915): two rows per game, one for each pitching side, 402,184 in all.</p>
+      <p>We leave out games that Retrosheet rebuilt from the final box score rather than from a real play-by-play, and the Negro Leagues.</p>
+      <p>If a game ends before anyone reaches base (a rain-shortened game, or a home team that wins without batting in the ninth), that side counts as still perfect up to the last batter it faced and then drops out of the count (the Kaplan-Meier method).</p>
+      <p>The figure at 27 batters (1 in 17,457) also includes Harvey Haddix (1959) and Pedro Martínez (1995), who got past 27 outs but lost the perfect game in extra innings: 23 cases in all.</p>
+      <p>Armando Galarraga’s game (June 2, 2010) counts as perfect by Davide’s choice: umpire Jim Joyce blew the call on the 27th batter and admitted it afterwards, but MLB does not recognise it as a perfect game.</p>
+      <p>Eras: instead of 12 nearly identical decades we use seven periods that match changes in the game. The dead ball up to 1919 (few home runs); the live ball from 1920; the war and postwar years from 1942; expansion and the pitchers’ years from 1961; the DH in the American League from 1973; expansion and the home run years from 1993; the strikeout years from 2010.</p>
+      <p>Code: <code>src/curve.py</code> (the overall curve) and <code>src/build_site.py</code> (eras and site).</p>
     </div>
   </details>
 </main>
 
 <footer>
-  <p>Dati: Retrosheet, stagione regolare 1908-2025. Programmi e risultati: <a href="https://github.com/AndreottiVIII/perfect-games">github.com/AndreottiVIII/perfect-games</a>.</p>
-  <p lang="en">The information used here was obtained free of charge from and is copyrighted by Retrosheet. Interested parties may contact Retrosheet at "www.retrosheet.org".</p>
+  <p>Data: Retrosheet, regular season 1908-2025. Code and results: <a href="https://github.com/AndreottiVIII/perfect-games">github.com/AndreottiVIII/perfect-games</a>.</p>
+  <p>The information used here was obtained free of charge from and is copyrighted by Retrosheet. Interested parties may contact Retrosheet at "www.retrosheet.org".</p>
 </footer>
 
 <!-- build:dati-curva -->
-<script type="application/json" id="dati-curva">{"tutte":{"s":[1.0,0.649581,0.431037,0.277306,0.18085,0.121643,0.0829571,0.0574066,0.0405958,0.0313787,0.0210128,0.0139812,0.00925198,0.00632795,0.0043413,0.00299614,0.00217177,0.00153169,0.00121041,0.000819394,0.000612677,0.000393508,0.000278942,0.000191773,0.00013449,0.000104603,8.71695e-05,5.72828e-05],"r":[402184,402184,261251,173356,111528,72735,48923,33364,23088,16327,12620,8451,5623,3721,2545,1746,1203,872,615,486,329,246,158,112,77,54,42,35]},"epoche":[{"id":"1908","label":"1908-1919","nome":"palla morta","lati":31096,"s":[1.0,0.610722,0.397222,0.2491,0.159281,0.104997,0.0710059,0.0493311,0.0347312,0.026981,0.0186519,0.0126061,0.00810394,0.00598148,0.00427708,0.0028621,0.00196167,0.00122202,0.00112555,0.000675328,null,null,null,null,null,null,null,null]},{"id":"1920","label":"1920-1941","nome":"palla viva, tra le due guerre","lati":51330,"s":[1.0,0.628716,0.401656,0.248802,0.155971,0.101188,0.0679135,0.0462303,0.0321644,0.0253458,0.0167543,0.0108514,0.00705241,0.00473407,0.00303916,0.00206507,0.00151958,0.00118839,0.000993571,0.00075979,0.000720826,0.000428599,null,null,null,null,null,null]},{"id":"1942","label":"1942-1960","nome":"guerra e dopoguerra","lati":43648,"s":[1.0,0.640556,0.419446,0.264892,0.169928,0.112262,0.0752841,0.0521215,0.0364736,0.0286153,0.0187867,0.0117302,0.00769795,0.00536107,0.00366569,0.00247434,0.00197031,0.00142045,0.00103098,0.000664406,null,null,null,null,null,null,null,null]},{"id":"1961","label":"1961-1972","nome":"anni dei lanciatori, senza DH","lati":40852,"s":[1.0,0.666944,0.451092,0.289655,0.191398,0.128488,0.0884657,0.06127,0.0439636,0.0364731,0.0242338,0.0162048,0.0112357,0.00802898,0.00538529,0.00381866,0.00268538,0.00189701,0.00165065,0.00110864,0.000739096,0.000369548,null,null,null,null,null,null]},{"id":"1973","label":"1973-1992","nome":"arriva il DH in Lega Americana","lati":81432,"s":[1.0,0.653281,0.435357,0.282334,0.185357,0.125258,0.0849175,0.0588958,0.0418631,0.0320636,0.02165,0.0144538,0.00949258,0.00616465,0.0042735,0.0029104,0.00213347,0.0015292,0.00123322,0.000838591,0.000567282,0.000394631,0.000295973,null,null,null,null,null]},{"id":"1993","label":"1993-2009","nome":"anni dei fuoricampo","lati":79140,"s":[1.0,0.65067,0.432537,0.278165,0.180339,0.120647,0.0810842,0.055206,0.0386657,0.0294794,0.0196487,0.0131792,0.00844074,0.00561031,0.0038792,0.00265353,0.00185747,0.00131413,0.000998231,0.000732878,0.000543341,0.000353803,null,null,null,null,null,null]},{"id":"2010","label":"2010-2025","nome":"anni degli strikeout","lati":74686,"s":[1.0,0.670688,0.454811,0.302748,0.203171,0.141486,0.0995903,0.0701336,0.0500629,0.0374501,0.0252122,0.0171384,0.0116622,0.00814075,0.00565032,0.00400343,0.00291889,0.00199502,0.00145944,0.000923868,0.000709638,0.000522186,0.000388292,null,null,null,null,null]}],"min_in_gioco":30}</script>
+<script type="application/json" id="dati-curva">{"tutte":{"s":[1.0,0.649581,0.431037,0.277306,0.18085,0.121643,0.0829571,0.0574066,0.0405958,0.0313787,0.0210128,0.0139812,0.00925198,0.00632795,0.0043413,0.00299614,0.00217177,0.00153169,0.00121041,0.000819394,0.000612677,0.000393508,0.000278942,0.000191773,0.00013449,0.000104603,8.71695e-05,5.72828e-05],"r":[402184,402184,261251,173356,111528,72735,48923,33364,23088,16327,12620,8451,5623,3721,2545,1746,1203,872,615,486,329,246,158,112,77,54,42,35]},"epoche":[{"id":"1908","label":"1908-1919","nome":"dead ball","lati":31096,"s":[1.0,0.610722,0.397222,0.2491,0.159281,0.104997,0.0710059,0.0493311,0.0347312,0.026981,0.0186519,0.0126061,0.00810394,0.00598148,0.00427708,0.0028621,0.00196167,0.00122202,0.00112555,0.000675328,null,null,null,null,null,null,null,null]},{"id":"1920","label":"1920-1941","nome":"live ball, between the wars","lati":51330,"s":[1.0,0.628716,0.401656,0.248802,0.155971,0.101188,0.0679135,0.0462303,0.0321644,0.0253458,0.0167543,0.0108514,0.00705241,0.00473407,0.00303916,0.00206507,0.00151958,0.00118839,0.000993571,0.00075979,0.000720826,0.000428599,null,null,null,null,null,null]},{"id":"1942","label":"1942-1960","nome":"war and postwar","lati":43648,"s":[1.0,0.640556,0.419446,0.264892,0.169928,0.112262,0.0752841,0.0521215,0.0364736,0.0286153,0.0187867,0.0117302,0.00769795,0.00536107,0.00366569,0.00247434,0.00197031,0.00142045,0.00103098,0.000664406,null,null,null,null,null,null,null,null]},{"id":"1961","label":"1961-1972","nome":"the pitchers’ years, no DH","lati":40852,"s":[1.0,0.666944,0.451092,0.289655,0.191398,0.128488,0.0884657,0.06127,0.0439636,0.0364731,0.0242338,0.0162048,0.0112357,0.00802898,0.00538529,0.00381866,0.00268538,0.00189701,0.00165065,0.00110864,0.000739096,0.000369548,null,null,null,null,null,null]},{"id":"1973","label":"1973-1992","nome":"the DH arrives in the American League","lati":81432,"s":[1.0,0.653281,0.435357,0.282334,0.185357,0.125258,0.0849175,0.0588958,0.0418631,0.0320636,0.02165,0.0144538,0.00949258,0.00616465,0.0042735,0.0029104,0.00213347,0.0015292,0.00123322,0.000838591,0.000567282,0.000394631,0.000295973,null,null,null,null,null]},{"id":"1993","label":"1993-2009","nome":"the home run years","lati":79140,"s":[1.0,0.65067,0.432537,0.278165,0.180339,0.120647,0.0810842,0.055206,0.0386657,0.0294794,0.0196487,0.0131792,0.00844074,0.00561031,0.0038792,0.00265353,0.00185747,0.00131413,0.000998231,0.000732878,0.000543341,0.000353803,null,null,null,null,null,null]},{"id":"2010","label":"2010-2025","nome":"the strikeout years","lati":74686,"s":[1.0,0.670688,0.454811,0.302748,0.203171,0.141486,0.0995903,0.0701336,0.0500629,0.0374501,0.0252122,0.0171384,0.0116622,0.00814075,0.00565032,0.00400343,0.00291889,0.00199502,0.00145944,0.000923868,0.000709638,0.000522186,0.000388292,null,null,null,null,null]}],"min_in_gioco":30}</script>
 <!-- /build:dati-curva -->
 <script src="charts.js"></script>
 </body>

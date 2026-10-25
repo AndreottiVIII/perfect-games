@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How it falls · Perfect games</title>
+<meta name="description" content="At every batter a perfect game has about a 1-in-3 chance of ending. It only drops when the pitcher bats.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">Perfect games</a>
+  <nav aria-label="Pages">
+    <a href="index.html">The curve</a>
+    <a href="how-it-falls.html" aria-current="page">How it falls</a>
+    <a href="grace-days.html">Grace days</a>
+    <a href="hidden-gems.html">Hidden gems</a>
+    <a href="the-21-games.html">The 21 games</a>
+    <a href="ballparks.html">Ballparks</a>
+    <a href="torture-test.html">Torture test</a>
+  </nav>
+</header>
+
+<main>
+  <h1>At every batter a perfect game has about a 1-in-3 chance of ending. It only drops when the pitcher bats.</h1>
+  <p class="lead">Take every side that is still perfect when a given batter comes up, and count how many lose it right there. We split batting teams with a DH (designated hitter: someone who bats in place of the pitcher) from those without one, where the pitcher bats too.</p>
+
+  <figure class="chart" id="grafico-come-cala">
+    <figcaption>
+      <strong>Chance of losing the perfect game at exactly that batter</strong>
+      <span class="note">The gray columns are batters 9, 18 and 27: as long as nobody has reached base, that is always the No. 9 spot in the lineup. The thin vertical lines show the margin of uncertainty (95% interval).</span>
+    </figcaption>
+    <div class="legend">
+      <span class="key"><span class="swatch" style="border-color:#b3261e"></span>No DH: the pitcher bats</span>
+      <span class="key"><span class="swatch" style="border-color:#2b2b2b"></span>With DH</span>
+      <span class="key"><span class="dot"></span>Fewer than 100 sides still in play: shaky number</span>
+    </div>
+    <div class="plot"></div>
+  </figure>
+
+  <ul class="points">
+    <li>For the first 17 batters the chance nearly always sits between 29% and 36%: about 1 in 3. At the very first batter it is 35.5% without a DH and 34.0% with one.</li>
+    <li>The dips at batters 9, 18 and 27 are the pitcher batting. Without a DH the No. 9 hitter breaks up the perfect game 19.5% of the time, against 34.6% for the other eight; when it happens, the hitter was the pitcher 96 times out of 100.</li>
+    <li>With a DH the dip almost disappears: 28.5% against 33.2%. A small drop remains because the No. 9 hitter is still the weakest bat in the lineup.</li>
+    <li>The third time through the order does not help the hitters: the same batters reach base a little less often, not more. By then only pitchers having an exceptional day are still out there.</li>
+    <li>Further right the numbers jump around: only 19 sides without a DH and 16 with one get to the 27th batter. That is why those points are hollow and the line is lighter.</li>
+  </ul>
+
+  <h2>How the dream ends</h2>
+  <p class="note">The first batter to reach base: how he gets there, in percent.</p>
+  <!-- build:tabella-eventi -->
+<div class="table-wrap"><table>
+<thead><tr>
+<th>How the first runner reaches</th>
+<th class="num">All</th>
+<th class="num">Batters 10-18</th>
+<th class="num">Batters 19-27</th>
+</tr></thead><tbody>
+<tr><td>Single</td><td class="num">48.3%</td><td class="num">51.6%</td><td class="num">52.5%</td></tr>
+<tr><td>Double or triple</td><td class="num">14.6%</td><td class="num">14.6%</td><td class="num">17.5%</td></tr>
+<tr><td>Home run</td><td class="num">5.9%</td><td class="num">6.5%</td><td class="num">4.1%</td></tr>
+<tr><td>Walk</td><td class="num">25.5%</td><td class="num">20.9%</td><td class="num">17.1%</td></tr>
+<tr><td>Hit by pitch</td><td class="num">1.9%</td><td class="num">1.9%</td><td class="num">2.4%</td></tr>
+<tr><td>Fielding error</td><td class="num">3.7%</td><td class="num">4.3%</td><td class="num">6.5%</td></tr>
+<tr><td>Other (interference and the like)</td><td class="num">0.2%</td><td class="num">0.2%</td><td class="num">0.0%</td></tr>
+<tr><td><strong>Cases</strong></td><td class="num"><strong>402,161</strong></td><td class="num"><strong>12,132</strong></td><td class="num"><strong>463</strong></td></tr>
+</tbody></table></div>
+<!-- /build:tabella-eventi -->
+  <ul class="points">
+    <li>Almost half the time (48.3%) a perfect game ends with a single, a quarter of the time (25.5%) with a walk.</li>
+    <li>In late breaks, from the 19th to the 27th batter (463 cases), walks fall to 17.1% and fielding errors rise to 6.5%. A pitcher deep into a perfect game gives nothing away: it dies on a real hit or on an error.</li>
+    <li>The way it ends has changed over time: home runs went from 2.3% of breaks (1908-1945) to 9.7% (2009-2025), errors from 5.3% to 2.3%.</li>
+    <li>The 12 times it ended at exactly the 27th batter: 6 singles, 2 doubles, 2 hit by pitch, 1 walk, 1 home run (see <a href="the-21-games.html">The 21 games</a>).</li>
+  </ul>
+
+  <details id="numeri-come-cala" class="data">
+    <summary>The numbers behind the chart</summary>
+    <div class="body"></div>
+  </details>
+
+  <details>
+    <summary>How we worked it out</summary>
+    <div class="body">
+      <p>For each batter n we count the sides “at risk”: those that have retired the first n-1 batters and are still in the game. The chance is the share of them that see batter n reach base. The margin of uncertainty is the 95% Wilson interval.</p>
+      <p>“With DH” means the batting team had a designated hitter in its starting lineup. Same data as <a href="index.html">The curve</a>: 402,184 pitching sides, 1908-2025.</p>
+      <p>As long as nobody reaches base, batter n is always in the same lineup spot and on the same trip through the order (1st to 9th the first time through, 10th to 18th the second, 19th to 27th the third). A statistical model with one effect for the lineup spot and one for the trip through the order fits the data well: the second and third time through, the same hitters reach base less often (ratios of 0.94 and 0.88 without a DH).</p>
+      <p>Code: <code>src/come_cala.py</code>; full numbers in <code>output/come_cala.md</code>.</p>
+    </div>
+  </details>
+</main>
+
+<footer>
+  <p>Data: Retrosheet, regular season 1908-2025. Code and results: <a href="https://github.com/AndreottiVIII/perfect-games">github.com/AndreottiVIII/perfect-games</a>.</p>
+  <p>The information used here was obtained free of charge from and is copyrighted by Retrosheet. Interested parties may contact Retrosheet at "www.retrosheet.org".</p>
+</footer>
+
+<!-- build:dati-come-cala -->
+<script type="application/json" id="dati-come-cala">{"min_rischio":100,"senza_dh":[{"n":1,"h":0.355245,"lo":0.353455,"hi":0.357039,"r":273887,"k":97297},{"n":2,"h":0.339968,"lo":0.337762,"hi":0.342181,"r":176590,"k":60035},{"n":3,"h":0.363331,"lo":0.360574,"hi":0.366096,"r":116555,"k":42348},{"n":4,"h":0.354171,"lo":0.350738,"hi":0.35762,"r":74207,"k":26282},{"n":5,"h":0.332457,"lo":0.328253,"hi":0.336688,"r":47925,"k":15933},{"n":6,"h":0.319205,"lo":0.314118,"hi":0.324335,"r":31992,"k":10212},{"n":7,"h":0.3073,"lo":0.301207,"hi":0.313461,"r":21780,"k":6693},{"n":8,"h":0.295354,"lo":0.288127,"hi":0.302685,"r":15087,"k":4456},{"n":9,"h":0.195184,"lo":0.18776,"hi":0.202828,"r":10631,"k":2075},{"n":10,"h":0.333801,"lo":0.323885,"hi":0.343866,"r":8556,"k":2856},{"n":11,"h":0.344386,"lo":0.332159,"hi":0.356823,"r":5700,"k":1963},{"n":12,"h":0.345197,"lo":0.330119,"hi":0.360592,"r":3737,"k":1290},{"n":13,"h":0.323253,"lo":0.30501,"hi":0.34205,"r":2447,"k":791},{"n":14,"h":0.31099,"lo":0.289154,"hi":0.333702,"r":1656,"k":515},{"n":15,"h":0.316389,"lo":0.290058,"hi":0.343952,"r":1141,"k":361},{"n":16,"h":0.27635,"lo":0.246083,"hi":0.308814,"r":778,"k":215},{"n":17,"h":0.298401,"lo":0.262075,"hi":0.33746,"r":563,"k":168},{"n":18,"h":0.179747,"lo":0.145021,"hi":0.220642,"r":395,"k":71},{"n":19,"h":0.348765,"lo":0.298918,"hi":0.402157,"r":324,"k":113},{"n":20,"h":0.232227,"lo":0.180349,"hi":0.293682,"r":211,"k":49},{"n":21,"h":0.358025,"lo":0.288273,"hi":0.434354,"r":162,"k":58},{"n":22,"h":0.326923,"lo":0.244338,"hi":0.421839,"r":104,"k":34},{"n":23,"h":0.357143,"lo":0.255032,"hi":0.474118,"r":70,"k":25},{"n":24,"h":0.355556,"lo":0.232189,"hi":0.501645,"r":45,"k":16},{"n":25,"h":0.206897,"lo":0.0984594,"hi":0.383904,"r":29,"k":6},{"n":26,"h":0.173913,"lo":0.0697854,"hi":0.371381,"r":23,"k":4},{"n":27,"h":0.368421,"lo":0.191493,"hi":0.589608,"r":19,"k":7}],"con_dh":[{"n":1,"h":0.340117,"lo":0.33753,"hi":0.342714,"r":128297,"k":43636},{"n":2,"h":0.329077,"lo":0.32592,"hi":0.33225,"r":84661,"k":27860},{"n":3,"h":0.342952,"lo":0.339059,"hi":0.346866,"r":56801,"k":19480},{"n":4,"h":0.335227,"lo":0.330455,"hi":0.340033,"r":37321,"k":12511},{"n":5,"h":0.317574,"lo":0.311809,"hi":0.323394,"r":24810,"k":7879},{"n":6,"h":0.315811,"lo":0.308852,"hi":0.322854,"r":16931,"k":5347},{"n":7,"h":0.309306,"lo":0.300953,"hi":0.317785,"r":11584,"k":3583},{"n":8,"h":0.288089,"lo":0.278269,"hi":0.298112,"r":8001,"k":2305},{"n":9,"h":0.286517,"lo":0.274922,"hi":0.2984,"r":5696,"k":1632},{"n":10,"h":0.323081,"lo":0.308875,"hi":0.33762,"r":4064,"k":1313},{"n":11,"h":0.314431,"lo":0.29735,"hi":0.33203,"r":2751,"k":865},{"n":12,"h":0.324496,"lo":0.303741,"hi":0.345965,"r":1886,"k":612},{"n":13,"h":0.302198,"lo":0.277607,"hi":0.327978,"r":1274,"k":385},{"n":14,"h":0.31946,"lo":0.289642,"hi":0.350831,"r":889,"k":284},{"n":15,"h":0.297521,"lo":0.262461,"hi":0.335135,"r":605,"k":180},{"n":16,"h":0.272941,"lo":0.232764,"hi":0.317187,"r":425,"k":116},{"n":17,"h":0.288026,"lo":0.24038,"hi":0.340878,"r":309,"k":89},{"n":18,"h":0.263636,"lo":0.209829,"hi":0.325556,"r":220,"k":58},{"n":19,"h":0.271605,"lo":0.208993,"hi":0.344798,"r":162,"k":44},{"n":20,"h":0.288136,"lo":0.21412,"hi":0.375511,"r":118,"k":34},{"n":21,"h":0.357143,"lo":0.262992,"hi":0.463789,"r":84,"k":30},{"n":22,"h":0.222222,"lo":0.131953,"hi":0.349389,"r":54,"k":12},{"n":23,"h":0.238095,"lo":0.134808,"hi":0.385278,"r":42,"k":10},{"n":24,"h":0.21875,"lo":0.110237,"hi":0.387553,"r":32,"k":7},{"n":25,"h":0.24,"lo":0.114962,"hi":0.434301,"r":25,"k":6},{"n":26,"h":0.157895,"lo":0.0552037,"hi":0.375659,"r":19,"k":3},{"n":27,"h":0.3125,"lo":0.141644,"hi":0.555961,"r":16,"k":5}]}</script>
+<!-- /build:dati-come-cala -->
+<script src="charts.js"></script>
+</body>
+</html>

@@ -9,11 +9,11 @@
     context: '#bdbdbd', accent: '#b3261e', wash: 'rgba(179,38,30,0.10)', band: '#f4f4f2', paper: '#ffffff'
   };
 
-  // ---------------------------------------------------------------- formati all'italiana
-  function int(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
-  function dec(x, d) { return x.toFixed(d).replace('.', ','); }
+  // ---------------------------------------------------------------- formati all'inglese (17,457 e 28.6%)
+  function int(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+  function dec(x, d) { return x.toFixed(d); }
   function pct(x, d) { return dec(x * 100, d === undefined ? 1 : d) + '%'; }
-  function oneIn(s) { return s >= 0.9995 ? 'tutte' : '1 su ' + int(1 / s); }
+  function oneIn(s) { return s >= 0.9995 ? 'all' : '1 in ' + int(1 / s); }
   function data(id) { var el = document.getElementById(id); return el ? JSON.parse(el.textContent) : null; }
 
   function svg(tag, attrs, parent) {
@@ -175,7 +175,7 @@
       var cross = svg('line', { y1: m.t, y2: m.t + ih, stroke: C.ink2, 'stroke-width': 1, visibility: 'hidden' }, s);
       var hot = svg('g', {}, s);
       var hit = svg('rect', { x: m.l - step / 2, y: m.t, width: iw + step, height: ih, fill: 'transparent',
-        tabindex: 0, 'aria-label': 'Valori del grafico: usa le frecce sinistra e destra' }, s);
+        tabindex: 0, 'aria-label': 'Chart values: use the left and right arrow keys' }, s);
       hit.style.cursor = 'crosshair';
       hit.style.outline = 'none';
 
@@ -235,8 +235,8 @@
   }
 
   var LOG_TICKS = [
-    { v: 1, label: 'tutte' }, { v: 0.1, label: '1 su 10' }, { v: 0.01, label: '1 su 100' },
-    { v: 0.001, label: '1 su 1.000' }, { v: 0.0001, label: '1 su 10.000' }, { v: 0.00001, label: '1 su 100.000' }
+    { v: 1, label: 'all' }, { v: 0.1, label: '1 in 10' }, { v: 0.01, label: '1 in 100' },
+    { v: 0.001, label: '1 in 1,000' }, { v: 0.0001, label: '1 in 10,000' }, { v: 0.00001, label: '1 in 100,000' }
   ];
   function range(a, b) { var r = []; for (var i = a; i <= b; i++) r.push(i); return r; }
 
@@ -260,10 +260,10 @@
       series.push({ color: C.accent, width: 3, points: range(0, 27).map(function (n) { return { x: n, y: all.s[n] }; }) });
       var key = [9, 18, 27];
       return {
-        aria: 'Quota di partite ancora perfette dopo ogni battitore, scala logaritmica',
+        aria: 'Share of games still perfect after each batter, log scale',
         left: [82, 92],
         x: { min: 0, max: 27, ticks: [0, 3, 6, 9, 12, 15, 18, 21, 24, 27], ticksNarrow: [0, 9, 18, 27],
-          label: 'Battitori avversari eliminati di fila', labelNarrow: 'Battitori eliminati di fila' },
+          label: 'Opposing batters retired in a row', labelNarrow: 'Batters retired in a row' },
         y: { log: true, min: 0.00001, max: 1, ticks: LOG_TICKS },
         vlines: [{ x: 27, label: '27 = perfect game', labelNarrow: 'perfect game' }],
         series: series,
@@ -271,7 +271,7 @@
         labels: key.map(function (n) { return { x: n, y: all.s[n], text: oneIn(all.s[n]), dx: n === 27 ? -8 : 6, dy: n === 27 ? 20 : -10, anchor: n === 27 ? 'end' : 'start', bold: true }; }),
         xs: range(0, 27),
         tip: function (n) {
-          var rows = [{ color: C.accent, value: oneIn(all.s[n]), label: 'tutte le epoche' }];
+          var rows = [{ color: C.accent, value: oneIn(all.s[n]), label: 'all eras' }];
           var marks = [{ y: all.s[n], color: C.accent }];
           D.epoche.forEach(function (e) {
             var v = at(e.s, n);
@@ -279,15 +279,15 @@
             rows.push({ color: state.era === e.id ? C.ink : C.context, value: v === null ? '—' : oneIn(v), label: e.label });
             if (state.era === e.id && v !== null) marks.push({ y: v, color: C.ink });
           });
-          return { title: n === 0 ? 'Prima del primo battitore' : 'Dopo ' + n + (n === 1 ? ' battitore' : ' battitori') + ' eliminati',
+          return { title: n === 0 ? 'Before the first batter' : 'After ' + n + (n === 1 ? ' batter' : ' batters') + ' retired',
             rows: rows, marks: marks,
-            notes: ['Squadre ancora in gioco: ' + int(all.r[n])] };
+            notes: ['Sides still in play: ' + int(all.r[n])] };
         }
       };
     }
     // pulsanti per evidenziare un'epoca
     var box = fig.querySelector('.eras');
-    html('span', '', box, 'Evidenzia un\'epoca:');
+    html('span', '', box, 'Highlight an era:');
     D.epoche.forEach(function (e) {
       var b = html('button', '', box, e.label);
       b.type = 'button';
@@ -305,7 +305,7 @@
     chart = lineChart(plot, opts);
     // tabella
     var tb = fig.parentNode.querySelector('#numeri-curva .body');
-    if (tb) table(tb, ['Battitori', 'Tutte'].concat(D.epoche.map(function (e) { return e.label; })),
+    if (tb) table(tb, ['Batters', 'All'].concat(D.epoche.map(function (e) { return e.label; })),
       range(1, 27).map(function (n) {
         return [String(n), oneIn(all.s[n])].concat(D.epoche.map(function (e) { var v = at(e.s, n); return v === null ? '—' : oneIn(v); }));
       }), 1);
@@ -321,10 +321,10 @@
     function ci(arr) { return arr.filter(function (p) { return p.r >= min; }).map(function (p) { return { x: p.n, lo: p.lo, hi: p.hi }; }); }
     var senza = D.senza_dh, con = D.con_dh;
     lineChart(fig.querySelector('.plot'), {
-      aria: 'Probabilità di perdere la partita perfetta a ogni battitore, con e senza DH',
+      aria: 'Chance of losing the perfect game at each batter, with and without a DH',
       left: [40, 44],
       x: { min: 1, max: 27, ticks: [1, 3, 6, 9, 12, 15, 18, 21, 24, 27],
-        ticksNarrow: [1, 9, 18, 27], label: 'Battitore affrontato (tutti i precedenti eliminati)', labelNarrow: 'Battitore affrontato' },
+        ticksNarrow: [1, 9, 18, 27], label: 'Batter faced (everyone before him retired)', labelNarrow: 'Batter faced' },
       y: { min: 0, max: 0.5, ticks: [0, 0.1, 0.2, 0.3, 0.4, 0.5].map(function (v) { return { v: v, label: pct(v, 0) }; }) },
       bands: [9, 18, 27],
       series: [
@@ -334,24 +334,24 @@
       labels: [
         { x: 9, y: senza[8].h, text: pct(senza[8].h), dx: -8, dy: 18, anchor: 'end', bold: true },
         { x: 18, y: senza[17].h, text: pct(senza[17].h), dx: -8, dy: 18, anchor: 'end', bold: true, wide: true },
-        { x: 27, y: 0.47, text: 'punti vuoti: meno di ' + min + ' squadre', dx: 4, anchor: 'end', wide: true }
+        { x: 27, y: 0.47, text: 'hollow points: fewer than ' + min + ' sides', dx: 4, anchor: 'end', wide: true }
       ],
       xs: range(1, 27),
       tip: function (n) {
         var a = senza[n - 1], b = con[n - 1];
         var notes = [];
-        if (n % 9 === 0) notes.push('Battitore n. ' + n + ': il nono della formazione');
-        if (a.r < min || b.r < min) notes.push('Poche squadre ancora in gioco: dato incerto');
-        return { title: 'Battitore n. ' + n,
+        if (n % 9 === 0) notes.push('Batter ' + n + ': the No. 9 spot in the lineup');
+        if (a.r < min || b.r < min) notes.push('Few sides still in play: shaky number');
+        return { title: 'Batter ' + n,
           rows: [
-            { color: C.accent, value: pct(a.h), label: 'senza DH (' + int(a.r) + ' squadre)' },
-            { color: C.ink2, value: pct(b.h), label: 'con DH (' + int(b.r) + ' squadre)' }
+            { color: C.accent, value: pct(a.h), label: 'no DH (' + int(a.r) + ' sides)' },
+            { color: C.ink2, value: pct(b.h), label: 'with DH (' + int(b.r) + ' sides)' }
           ],
           marks: [{ y: a.h, color: C.accent }, { y: b.h, color: C.ink2 }], notes: notes };
       }
     });
     var tb = document.querySelector('#numeri-come-cala .body');
-    if (tb) table(tb, ['Battitore', 'Senza DH', 'Squadre a rischio', 'Con DH', 'Squadre a rischio'],
+    if (tb) table(tb, ['Batter', 'No DH', 'Sides at risk', 'With DH', 'Sides at risk'],
       senza.map(function (a, i) { var b = con[i]; return [String(a.n), pct(a.h), int(a.r), pct(b.h), int(b.r)]; }), 1);
   }
 
@@ -363,12 +363,12 @@
     var P = D.punti;
     var lab = [9, 18, 27].map(function (n) { var p = P[n - 1]; return { x: n, y: p.ratio, text: dec(p.ratio, n === 27 ? 1 : 2), dx: n === 27 ? -10 : -6, dy: n === 27 ? 22 : -12, anchor: 'end', bold: true }; });
     lineChart(fig.querySelector('.plot'), {
-      aria: 'Rapporto tra partite ancora perfette reali e attese dal modello, battitore per battitore',
+      aria: 'Ratio of games actually still perfect to games expected by the model, batter by batter',
       left: [40, 44],
       x: { min: 1, max: 27, ticks: [1, 3, 6, 9, 12, 15, 18, 21, 24, 27], ticksNarrow: [1, 9, 18, 27],
-        label: 'Battitori eliminati di fila', labelNarrow: 'Battitori eliminati di fila' },
+        label: 'Batters retired in a row', labelNarrow: 'Batters retired in a row' },
       y: { min: 0.5, max: 4, ticks: [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4].map(function (v) { return { v: v, label: v === 1 ? '1' : dec(v, v % 1 ? 1 : 0) }; }) },
-      hline: { y: 1, label: '1 = come se ogni battitore fosse indipendente', labelNarrow: '1 = come il caso' },
+      hline: { y: 1, label: '1 = as if every batter were independent', labelNarrow: '1 = pure chance' },
       series: [{ color: C.accent, width: 2.5, points: P.map(function (p) { return { x: p.n, y: p.ratio }; }),
         area: P.map(function (p) { return { x: p.n, lo: p.lo, hi: p.hi }; }) }],
       dots: [9, 18, 27].map(function (n) { return { x: n, y: P[n - 1].ratio, color: C.accent }; }),
@@ -376,18 +376,18 @@
       xs: range(1, 27),
       tip: function (n) {
         var p = P[n - 1];
-        return { title: 'Dopo ' + n + (n === 1 ? ' battitore' : ' battitori') + ' eliminati',
+        return { title: 'After ' + n + (n === 1 ? ' batter' : ' batters') + ' retired',
           rows: [
-            { color: C.accent, value: dec(p.ratio, 2) + '×', label: 'reale / atteso' },
-            { color: null, value: oneIn(p.s), label: 'ancora perfette, reale' },
-            { color: null, value: oneIn(p.s0), label: 'attese dal caso' }
+            { color: C.accent, value: dec(p.ratio, 2) + '×', label: 'actual / expected' },
+            { color: null, value: oneIn(p.s), label: 'still perfect, actual' },
+            { color: null, value: oneIn(p.s0), label: 'expected by chance' }
           ],
-          notes: ['Intervallo al 95%: ' + dec(p.lo, 2) + '–' + dec(p.hi, 2)],
+          notes: ['95% interval: ' + dec(p.lo, 2) + '–' + dec(p.hi, 2)],
           marks: [{ y: p.ratio, color: C.accent }] };
       }
     });
     var tb = document.querySelector('#numeri-grazia .body');
-    if (tb) table(tb, ['Battitori', 'Reale', 'Atteso dal caso', 'Rapporto', 'Intervallo 95%'],
+    if (tb) table(tb, ['Batters', 'Actual', 'Expected by chance', 'Ratio', '95% interval'],
       P.map(function (p) { return [String(p.n), oneIn(p.s), oneIn(p.s0), dec(p.ratio, 2), dec(p.lo, 2) + '–' + dec(p.hi, 2)]; }), 1);
   }
 
@@ -401,7 +401,7 @@
     var MAX = 0.5;   // scala: da -50% a +50%
     var bars = html('div', 'bars', host);
     var sc = html('div', 'bars-scale', bars);
-    html('span', '', sc, 'Stadio');
+    html('span', '', sc, 'Ballpark');
     var ticks = html('span', 'ticks', sc);
     [-0.4, -0.2, 0, 0.2, 0.4].forEach(function (v) {
       var t = html('span', Math.abs(v) === 0.2 ? 'minor' : '', ticks, v === 0 ? '0' : (v > 0 ? '+' : '−') + Math.abs(v * 100) + '%');
@@ -424,16 +424,16 @@
       var pc = Math.round(Math.abs(d) * 100);
       var label = pc === 0 ? '0%' : (d >= 0 ? '+' : '−') + pc + '%';
       html('span', 'bar-val', row, label);
-      row.setAttribute('aria-label', p.nome + ', ' + p.citta + ', ' + p.anni + ': ' + label + ' rispetto alle attese');
+      row.setAttribute('aria-label', p.nome + ', ' + p.citta + ', ' + p.anni + ': ' + label + ' compared with expected');
       function show() {
         var r = row.getBoundingClientRect(), hr = host.getBoundingClientRect();
         tip.show({ title: p.nome + ', ' + p.citta + ' (' + p.anni + ')',
           rows: [
-            { color: p.evidenza ? C.accent : C.context, value: label, label: 'rispetto alle attese' },
-            { color: null, value: int(p.O), label: 'serie da 9 o più eliminati' },
-            { color: null, value: dec(p.E, 0), label: 'attese' }
+            { color: p.evidenza ? C.accent : C.context, value: label, label: 'compared with expected' },
+            { color: null, value: int(p.O), label: 'starts with 9+ straight outs' },
+            { color: null, value: dec(p.E, 0), label: 'expected' }
           ],
-          notes: [int(p.n) + ' squadre al lancio'] }, hr.width * 0.45, r.top - hr.top + r.height / 2);
+          notes: [int(p.n) + ' pitching sides'] }, hr.width * 0.45, r.top - hr.top + r.height / 2);
       }
       row.addEventListener('pointerenter', show);
       row.addEventListener('pointerdown', show);
@@ -444,8 +444,99 @@
     document.addEventListener('pointerdown', function (e) { if (!host.contains(e.target)) tip.hide(); });
   }
 
+  // ---------------------------------------------------------------- 7. Torture test (righe con intervalli)
+  // Per ogni ipotesi due segmenti: stagioni pari (scoperta, punto vuoto) e dispari (conferma, punto pieno).
+  // Scala logaritmica del rapporto di probabilita'; i valori fuori scala si fermano al bordo con una freccia.
+  function tortura() {
+    var D = data('dati-tortura');
+    var box = document.getElementById('grafico-tortura');
+    if (!D || !box) return;
+    var host = box.querySelector('.plot');
+    var tip = makeTip(host);
+    var LO = 0.7, HI = 1 / 0.7, L = Math.log;
+    function pos(v) { return (L(Math.min(Math.max(v, LO), HI)) - L(LO)) / (L(HI) - L(LO)) * 100; }
+    var GROUPS = [
+      ['new', 'New findings that held up'],
+      ['known', 'Known effects that came back (sanity checks)'],
+      ['fooled', 'Looked real, wasn’t'],
+      ['failed', 'Tried and failed']
+    ];
+    var FAIL = '#8c8c8c';
+    function color(h) { return h.gruppo === 'new' ? C.accent : (h.regge ? C.ink2 : FAIL); }
+    function pv(p) { return p < 0.001 ? '<0.001' : (p < 0.01 ? p.toFixed(3) : p.toFixed(2)); }
+    function or(x) { return dec(x.OR, 2) + ' (' + dec(x.lo, 2) + '–' + dec(x.hi, 2) + ')'; }
+
+    var wrap = html('div', 'forest', host);
+    var sc = html('div', 'forest-scale', wrap);
+    html('span', '', sc, '');
+    var ticks = html('span', 'ticks', sc);
+    [[0.75, '0.75'], [0.9, '0.9'], [1, '1'], [1.1, '1.1'], [1.33, '1.33']].forEach(function (t) {
+      var e = html('span', t[0] === 1 ? 'one' : '', ticks, t[1]);
+      e.style.left = pos(t[0]) + '%';
+    });
+    html('span', 'forest-off', sc, 'off scale');
+    GROUPS.forEach(function (g) {
+      var hs = D.ipotesi.filter(function (h) { return h.gruppo === g[0]; });
+      if (!hs.length) return;
+      html('div', 'forest-group', wrap, g[1]);
+      var list = html('div', '', wrap);
+      list.setAttribute('role', 'list');
+      hs.forEach(function (h) {
+        var col = color(h);
+        var row = html('div', 'forest-row', list);
+        row.setAttribute('role', 'listitem');
+        row.tabIndex = 0;
+        row.setAttribute('aria-label', h.nome + '. Even seasons ' + or(h.pari) + ', odd seasons ' + or(h.dispari) +
+          (h.regge ? '. Passed the rule.' : '. Did not pass.'));
+        html('span', 'forest-name', row, h.nome);
+        var track = html('span', 'forest-track', row);
+        html('span', 'ref', track).style.left = pos(1) + '%';
+        var off = [];
+        [[h.pari, 'even', 7, '○'], [h.dispari, 'odd', 19, '●']].forEach(function (k) {
+          var x = k[0], y = k[2];
+          var a = pos(x.lo), b = pos(x.hi);
+          var ci = html('span', 'ci', track);
+          ci.style.left = a + '%'; ci.style.width = Math.max(b - a, 0.4) + '%'; ci.style.top = y + 'px';
+          ci.style.borderColor = col;
+          if (x.lo < LO) { var la = html('span', 'clip left', track); la.style.top = y + 'px'; la.style.borderRightColor = col; }
+          if (x.hi > HI) { var ra = html('span', 'clip right', track); ra.style.top = y + 'px'; ra.style.borderLeftColor = col; }
+          // punto fuori scala: niente punto, solo la freccia; il valore va nella colonna a destra
+          if (x.OR > HI || x.OR < LO) { off.push(k[3] + dec(x.OR, 1)); return; }
+          var pt = html('span', 'pt ' + k[1], track);
+          pt.style.left = pos(x.OR) + '%'; pt.style.top = y + 'px';
+          pt.style.borderColor = col;
+          if (k[1] === 'odd') pt.style.background = col;
+        });
+        html('span', 'forest-off', row, off.join(' '));
+        function show() {
+          var r = row.getBoundingClientRect(), hr = host.getBoundingClientRect();
+          tip.show({ title: h.nome,
+            rows: [
+              { color: col, value: or(h.pari), label: 'even seasons, p ' + pv(h.pari.p) },
+              { color: col, value: or(h.dispari), label: 'odd seasons, p ' + pv(h.dispari.p) }
+            ],
+            notes: [h.regge ? 'Passed: same direction, p < 0.05 in both halves' : 'Did not pass the rule'] },
+            hr.width * 0.4, r.top - hr.top + r.height / 2);
+        }
+        row.addEventListener('pointerenter', show);
+        row.addEventListener('pointerdown', show);
+        row.addEventListener('focus', show);
+        row.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') tip.hide(); });
+        row.addEventListener('blur', function () { tip.hide(); });
+      });
+    });
+    document.addEventListener('pointerdown', function (e) { if (!host.contains(e.target)) tip.hide(); });
+
+    var tb = document.querySelector('#numeri-tortura .body');
+    if (tb) table(tb, ['Hypothesis', 'Even seasons', 'p', 'Odd seasons', 'p', 'Passed'],
+      D.ipotesi.map(function (h) {
+        return [h.nome, or(h.pari), pv(h.pari.p), or(h.dispari), pv(h.dispari.p), h.regge ? 'yes' : 'no'];
+      }), 1);
+  }
+
   curva();
   comeCala();
   grazia();
   stadi();
+  tortura();
 })();

@@ -18,7 +18,7 @@ CHI12,Guaranteed Rate Field,Chicago
 CIN07,Crosley Field,Cincinnati
 CIN08,Riverfront Stadium,Cincinnati
 CIN09,Great American Ball Park,Cincinnati
-CLE05,League Park (prima versione),Cleveland
+CLE05,League Park (first version),Cleveland
 CLE06,League Park,Cleveland
 CLE07,Cleveland Stadium,Cleveland
 CLE08,Progressive Field,Cleveland
@@ -40,14 +40,14 @@ MIN03,Metrodome,Minneapolis
 MIN04,Target Field,Minneapolis
 MON01,Jarry Park,Montréal
 MON02,Stade Olympique,Montréal
-NYC10,Polo Grounds (terza versione),New York
+NYC10,Polo Grounds (third version),New York
 NYC13,Hilltop Park,New York
 NYC14,Polo Grounds,New York
 NYC15,Ebbets Field,New York
 NYC16,Yankee Stadium (1923-2008),New York
 NYC17,Shea Stadium,New York
 NYC20,Citi Field,New York
-NYC21,Yankee Stadium (dal 2009),New York
+NYC21,Yankee Stadium (since 2009),New York
 OAK01,Oakland Coliseum,Oakland
 PHI09,Baker Bowl,Filadelfia
 PHI11,Shibe Park,Filadelfia
@@ -66,7 +66,7 @@ SFO03,Oracle Park,San Francisco
 STL05,Robison Field,St. Louis
 STL07,Sportsman's Park,St. Louis
 STL09,Busch Stadium (1966-2005),St. Louis
-STL10,Busch Stadium (dal 2006),St. Louis
+STL10,Busch Stadium (since 2006),St. Louis
 STP01,Tropicana Field,St. Petersburg
 TOR01,Exhibition Stadium,Toronto
 TOR02,Rogers Centre,Toronto

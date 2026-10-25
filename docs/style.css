@@ -108,6 +108,34 @@ figure.chart figcaption strong { font-weight: 600; }
   .bars-scale .ticks .minor { display: none; }
 }
 
+/* Torture test: righe con intervalli (pari = punto vuoto, dispari = punto pieno) */
+.forest { display: grid; font-size: 0.86rem; }
+.forest-scale, .forest-row { display: grid; grid-template-columns: minmax(0, 19rem) minmax(0, 1fr) 4.2rem; gap: 14px; align-items: center; }
+.forest-scale { color: var(--muted); font-size: 0.78rem; position: sticky; top: 0; background: var(--paper); z-index: 2; padding: 4px 0; border-bottom: 1px solid var(--axis); }
+.forest-scale .ticks { position: relative; height: 1.2em; }
+.forest-scale .ticks span { position: absolute; transform: translateX(-50%); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.forest-scale .ticks .one { color: var(--ink); font-weight: 600; }
+.forest-group { font-weight: 650; color: var(--ink); padding: 16px 0 4px; border-bottom: 1px solid var(--line); }
+.forest-row { padding: 4px 0; cursor: default; border-bottom: 1px solid var(--grid); }
+.forest-row:hover, .forest-row:focus-visible { background: var(--band); }
+.forest-name { color: var(--ink-2); line-height: 1.3; }
+.forest-track { position: relative; height: 26px; }
+.forest-off { font-size: 0.78rem; color: var(--ink-2); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.forest-scale .forest-off { color: var(--muted); }
+.forest-track .ref { position: absolute; top: -4px; bottom: -4px; border-left: 1px solid var(--ink-2); }
+.forest-track .ci { position: absolute; height: 0; border-top: 2px solid; transform: translateY(-1px); }
+.forest-track .pt { position: absolute; width: 9px; height: 9px; border-radius: 50%; border: 2px solid; background: var(--paper); transform: translate(-50%, -50%); box-shadow: 0 0 0 2px var(--paper); }
+.forest-track .clip { position: absolute; width: 0; height: 0; border: 4px solid transparent; transform: translateY(-50%); }
+.forest-track .clip.left { left: -8px; border-left: 0; border-right-width: 6px; }
+.forest-track .clip.right { right: -8px; border-right: 0; border-left-width: 6px; }
+.legend .ring { width: 9px; height: 9px; border-radius: 50%; border: 2px solid var(--ink-2); background: var(--paper); }
+.legend .ring.full { background: var(--ink-2); }
+@media (max-width: 620px) {
+  .forest-scale, .forest-row { grid-template-columns: minmax(0, 1fr) 3.6rem; gap: 2px 10px; }
+  .forest-name { grid-column: 1 / -1; }
+  .forest-scale > span:first-child { display: none; }
+}
+
 /* Tabelle semplici: se sono larghe scorrono dentro il loro riquadro */
 .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; border-top: 1px solid var(--ink); }
 table { border-collapse: collapse; font-size: 0.9rem; width: 100%; }
@@ -125,9 +153,10 @@ tr.special td { background: #fbf3f2; }
 .chicche h2::before { content: counter(c) ". "; color: var(--accent); }
 .chicche h2 .tag { margin-left: 6px; vertical-align: 2px; }
 .tag { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; border: 1px solid currentColor; border-radius: 3px; padding: 0 6px; white-space: nowrap; }
-.tag.solida { color: var(--ink); }
-.tag.verificare { color: var(--accent); }
-.tag.aneddoto { color: var(--muted); }
+.tag.solid { color: var(--ink); }
+.tag.verify { color: var(--accent); }
+.tag.open { color: var(--accent); border-style: dashed; }
+.tag.anecdote { color: var(--muted); }
 
 /* Riquadri apribili */
 details { border-top: 1px solid var(--line); padding-top: 10px; max-width: 100%; min-width: 0; }

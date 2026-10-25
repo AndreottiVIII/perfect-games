@@ -25,7 +25,7 @@ def ramp_colors(k):
 
 
 def pct(v, _):
-    s = f'{v * 100:g}'.replace('.', ',')
+    s = f'{v * 100:g}'
     return s + '%'
 
 
@@ -62,18 +62,18 @@ def main():
     n27 = g[g.n == 27].iloc[0]
     ax.plot([27], [n27.survival], 'o', ms=7, color=INK, mec=SURFACE, mew=1.5, zorder=6)
     NL = chr(10)
-    ax.annotate(NL.join(['Totale: dopo 27 battitori ancora perfette 1 su 17.500', '(21 partite perfette, più Haddix e Martinez, fermati dopo)']),
+    ax.annotate(NL.join(['All games: still perfect after 27 batters, 1 in 17,500', '(21 perfect games, plus Haddix and Martinez, who lost it later)']),
                 xy=(27, n27.survival), xytext=(26.3, n27.survival * 0.32),
                 color=INK, fontsize=9.5, va='top', ha='right', zorder=7,
                 arrowprops=dict(arrowstyle='-', color=INK, lw=1, shrinkA=0, shrinkB=4))
-    ax.annotate('Totale', xy=(9, ov[ov.n == 9].survival.iloc[0]),
+    ax.annotate('All games', xy=(9, ov[ov.n == 9].survival.iloc[0]),
                 xytext=(10.3, ov[ov.n == 9].survival.iloc[0] * 4),
                 color=INK, fontsize=10.5, fontweight='bold', va='center', ha='left',
                 arrowprops=dict(arrowstyle='-', color=INK, lw=1, shrinkA=0, shrinkB=3))
 
     # legenda dei decenni (rampa chiara = piu' vecchio, scura = piu' recente)
     lx, ly0 = 0.60, 0.93
-    ax.text(lx, ly0 + 0.002, 'Decennio (colore più scuro = più recente)', transform=ax.transAxes,
+    ax.text(lx, ly0 + 0.002, 'Decade (darker = more recent)', transform=ax.transAxes,
             color=INK2, fontsize=9.5, va='bottom', ha='left')
     for i, (dcd, col) in enumerate(zip(decades, cols)):
         r, c = i % 7, i // 7
@@ -87,7 +87,7 @@ def main():
     ax.set_xlim(0, 28.5)
     ax.set_ylim(4e-6, 1.3)
     ax.axvline(27, color=INK2, lw=1, ls=(0, (4, 3)), zorder=2)
-    ax.text(27, 1.45, '27 = partita perfetta', ha='center', va='bottom', color=INK2, fontsize=9.5)
+    ax.text(27, 1.45, '27 = perfect game', ha='center', va='bottom', color=INK2, fontsize=9.5)
 
     ax.yaxis.set_major_locator(FixedLocator([1, 1e-1, 1e-2, 1e-3, 1e-4]))
     ax.yaxis.set_minor_locator(NullLocator())
@@ -100,16 +100,16 @@ def main():
     ax.spines['bottom'].set_color(INK2)
     ax.tick_params(colors=INK2, labelsize=10, length=0)
     ax.tick_params(axis='x', which='both', length=3)
-    ax.set_xlabel('Battitori affrontati (tutti eliminati finora)', color=INK2, fontsize=11)
-    ax.set_ylabel('Partite ancora perfette (scala logaritmica)', color=INK2, fontsize=11)
+    ax.set_xlabel('Batters faced (all retired so far)', color=INK2, fontsize=11)
+    ax.set_ylabel('Games still perfect (log scale)', color=INK2, fontsize=11)
 
-    fig.text(0.07, 0.975, 'Ogni partita nasce potenzialmente perfetta: quasi nessuna lo resta',
+    fig.text(0.07, 0.975, 'Every game starts out perfect. Almost none stay that way',
              fontsize=15, fontweight='bold', color=INK, ha='left', va='top')
-    fig.text(0.07, 0.92, 'Squadre al lancio che non hanno ancora fatto arrivare nessun battitore in base, '
-             'dopo n battitori affrontati. Stagione regolare MLB 1908-2025.',
+    fig.text(0.07, 0.92, 'Pitching sides that have not yet let a single batter reach base, '
+             'after n batters faced. MLB regular season, 1908-2025.',
              fontsize=10, color=INK2, ha='left', va='top')
-    fig.text(0.07, 0.012, 'Fonte: Retrosheet (retrosheet.org); partite ricostruite da box score escluse.' + chr(10) +
-             'Le linee dei decenni si fermano quando restano meno di 25 squadre in gioco: oltre, i casi sono pochissimi.',
+    fig.text(0.07, 0.012, 'Source: Retrosheet (retrosheet.org); games rebuilt from box scores are left out.' + chr(10) +
+             'Decade lines stop when fewer than 25 sides are still perfect: past that point there are too few cases.',
              fontsize=8.5, color=INK2, ha='left', va='bottom')
     fig.subplots_adjust(left=0.085, right=0.93, top=0.82, bottom=0.14)
 

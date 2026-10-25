@@ -1,75 +1,13 @@
 <!doctype html>
-<html lang="it">
+<html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Giornata di grazia · Perfect games</title>
-<meta name="description" content="Le partite perfette sono più del doppio di quelle che il caso da solo produrrebbe: 23 contro 9,5.">
-<link rel="stylesheet" href="style.css">
+<title>Grace days · Perfect games</title>
+<meta http-equiv="refresh" content="0; url=grace-days.html">
+<link rel="canonical" href="grace-days.html">
+<meta name="robots" content="noindex">
 </head>
 <body>
-<header class="top">
-  <a class="brand" href="index.html">Perfect games</a>
-  <nav aria-label="Pagine">
-    <a href="index.html">La curva</a>
-    <a href="come-cala.html">Come cala</a>
-    <a href="giornata-di-grazia.html" aria-current="page">Giornata di grazia</a>
-    <a href="chicche.html">Chicche</a>
-    <a href="partite.html">Le 21 partite</a>
-    <a href="stadi.html">Gli stadi</a>
-  </nav>
-</header>
-
-<main>
-  <h1>Le partite perfette sono più del doppio di quelle che il caso da solo produrrebbe: 23 contro 9,5.</h1>
-  <p class="lead">Immaginiamo un baseball senza giornate di grazia: ogni battitore arriva in base con la probabilità tipica della sua stagione, del suo posto nella formazione e del giro, e quello che fa un battitore non dice niente sul successivo. Quante partite arriverebbero a 27 eliminati di fila? Lo confrontiamo con quello che è successo davvero.</p>
-
-  <div class="tiles">
-    <div class="tile"><span class="value">23 <small>contro 9,5</small></span><span class="label">partite arrivate a 27 eliminati di fila (le 21 perfette più Haddix e Pedro Martínez), contro quelle attese se ogni battitore fosse indipendente</span></div>
-    <div class="tile"><span class="value">17 <small>contro 4,1</small></span><span class="label">lanciatori con almeno 5 partenze da 15 o più eliminati di fila, contro quelli attesi se fossero tutti uguali</span></div>
-  </div>
-
-  <figure class="chart" id="grafico-grazia">
-    <figcaption>
-      <strong>Partite ancora perfette: quante volte più del previsto, dopo ogni battitore</strong>
-      <span class="note">1 vuol dire “esattamente come il caso”. La fascia chiara è il margine di incertezza (intervallo al 95%): si allarga verso la fine perché i casi sono pochi.</span>
-    </figcaption>
-    <div class="plot"></div>
-  </figure>
-
-  <ul class="points">
-    <li>Nei primi 3 battitori il caso indovina in pieno: il rapporto è 1,00.</li>
-    <li>Poi lo scarto cresce piano piano, senza una soglia netta: 1,07 dopo 9 battitori, 1,13 dopo 12, 1,43 dopo 18, 2,4 dopo 27. La differenza è già chiara dal 6°-9° battitore.</li>
-    <li>A ogni battitore la probabilità di rompere la perfezione è solo un po’ più bassa del previsto: −2% tra il 4° e l’8° battitore, −5% tra il 9° e il 17°, −12% dal 18° al 27°. Piccole differenze che, battitore dopo battitore, si sommano fino a più del doppio.</li>
-    <li>Una parte è bravura stabile: 17 lanciatori hanno almeno 5 partenze con 15 o più battitori eliminati di fila, contro 4,1 attesi. In testa Max Scherzer e Nolan Ryan, con 7 partenze ciascuno.</li>
-    <li>Quanto resti alla “giornata di grazia” vera e propria questi dati non lo separano dalla bravura. Anche tenendo conto della forza del lanciatore partente le partite attese salgono solo a 10,8; averne 21 o più per puro caso succede circa 1 volta su 1.000.</li>
-  </ul>
-
-  <details id="numeri-grazia" class="data">
-    <summary>I numeri del grafico</summary>
-    <div class="body"></div>
-  </details>
-
-  <details>
-    <summary>Come l’abbiamo calcolato</summary>
-    <div class="body">
-      <p>Il modello “ogni battitore indipendente” usa tutti i turni di battuta dal 1908 al 2025, contati per stagione, lega, posto nella formazione, giro, lanciatore alla battuta sì o no, e solo con le basi vuote (nessuno ancora in base in quel mezzo inning). Per ogni squadra e ogni battitore prende la probabilità di arrivare in base di quella situazione; la probabilità di restare perfetti è il prodotto di battitore in battitore.</p>
-      <p>Il confronto è sulla quota di squadre ancora perfette dopo n battitori: reale diviso attesa. Dopo 27 battitori la quota reale è 1 su 17.457, quella attesa 1 su 41.761. Il margine di incertezza viene dalla formula di Greenwood.</p>
-      <p>I 23 casi reali comprendono Harvey Haddix (36 eliminati nel 1959) e Pedro Martínez (27 nel 1995): il conto li include perché superarono i 27 eliminati, anche se non è perfect game.</p>
-      <p>Una seconda versione aggiunge la forza del lanciatore partente, stimata dalle sue altre partenze: le attese salgono a 10,8 (probabilità di averne 21 o più per caso circa 4 su 1.000). Un modello più ingenuo, con un solo tasso per stagione e tutte le situazioni mescolate, ne prevede appena 1,9, ma sbaglia di proposito: conta anche i turni con corridori in base, dove arrivare in base è più facile.</p>
-      <p>Limiti: il modello non conosce avversario, stadio e giornata, e “basi vuote” è approssimato. Programma: <code>src/come_cala.py</code>; numeri completi in <code>output/come_cala.md</code>.</p>
-    </div>
-  </details>
-</main>
-
-<footer>
-  <p>Dati: Retrosheet, stagione regolare 1908-2025. Programmi e risultati: <a href="https://github.com/AndreottiVIII/perfect-games">github.com/AndreottiVIII/perfect-games</a>.</p>
-  <p lang="en">The information used here was obtained free of charge from and is copyrighted by Retrosheet. Interested parties may contact Retrosheet at "www.retrosheet.org".</p>
-</footer>
-
-<!-- build:dati-grazia -->
-<script type="application/json" id="dati-grazia">{"punti":[{"n":1,"s":0.649581,"s0":0.649621,"ratio":0.999938,"lo":0.99767,"hi":1.00221},{"n":2,"s":0.431037,"s0":0.431154,"ratio":0.999729,"lo":0.996185,"hi":1.00328},{"n":3,"s":0.277306,"s0":0.277454,"ratio":0.999466,"lo":0.994492,"hi":1.00447},{"n":4,"s":0.18085,"s0":0.180476,"ratio":1.00207,"lo":0.995503,"hi":1.00869},{"n":5,"s":0.121643,"s0":0.119802,"ratio":1.01537,"lo":1.00698,"hi":1.02384},{"n":6,"s":0.0829571,"s0":0.0809993,"ratio":1.02417,"lo":1.0137,"hi":1.03475},{"n":7,"s":0.0574066,"s0":0.0554281,"ratio":1.03569,"lo":1.0228,"hi":1.04875},{"n":8,"s":0.0405958,"s0":0.0385631,"ratio":1.05271,"lo":1.03701,"hi":1.06865},{"n":9,"s":0.0313787,"s0":0.0293749,"ratio":1.06821,"lo":1.05003,"hi":1.08672},{"n":10,"s":0.0210128,"s0":0.0192061,"ratio":1.09407,"lo":1.07123,"hi":1.11739},{"n":11,"s":0.0139812,"s0":0.0127355,"ratio":1.09781,"lo":1.06969,"hi":1.12668},{"n":12,"s":0.00925198,"s0":0.00820982,"ratio":1.12694,"lo":1.09147,"hi":1.16357},{"n":13,"s":0.00632795,"s0":0.005334,"ratio":1.18634,"lo":1.14128,"hi":1.23319},{"n":14,"s":0.0043413,"s0":0.00353984,"ratio":1.22641,"lo":1.17033,"hi":1.28518},{"n":15,"s":0.00299614,"s0":0.00238173,"ratio":1.25797,"lo":1.18901,"hi":1.33093},{"n":16,"s":0.00217177,"s0":0.00161899,"ratio":1.34143,"lo":1.25543,"hi":1.43333},{"n":17,"s":0.00153169,"s0":0.00111896,"ratio":1.36885,"lo":1.26495,"hi":1.48129},{"n":18,"s":0.00121041,"s0":0.000848007,"ratio":1.42736,"lo":1.30604,"hi":1.55994},{"n":19,"s":0.000819394,"s0":0.000554805,"ratio":1.4769,"lo":1.32572,"hi":1.64532},{"n":20,"s":0.000612677,"s0":0.000365257,"ratio":1.67739,"lo":1.48043,"hi":1.90055},{"n":21,"s":0.000393508,"s0":0.000234254,"ratio":1.67984,"lo":1.43737,"hi":1.96321},{"n":22,"s":0.000278942,"s0":0.000152136,"ratio":1.83351,"lo":1.52359,"hi":2.20647},{"n":23,"s":0.000191773,"s0":0.000100731,"ratio":1.90382,"lo":1.52277,"hi":2.38022},{"n":24,"s":0.00013449,"s0":6.74901e-05,"ratio":1.99274,"lo":1.52625,"hi":2.6018},{"n":25,"s":0.000104603,"s0":4.59659e-05,"ratio":2.27567,"lo":1.6818,"hi":3.07925},{"n":26,"s":8.71695e-05,"s0":3.17018e-05,"ratio":2.74967,"lo":1.97428,"hi":3.8296},{"n":27,"s":5.72828e-05,"s0":2.36616e-05,"ratio":2.42091,"lo":1.60878,"hi":3.64303}],"reali_27":23.0382,"attese_27_N2":9.51634,"attese_27_N3":10.7033}</script>
-<!-- /build:dati-grazia -->
-<script src="charts.js"></script>
+<p>This page has moved: <a href="grace-days.html">Grace days</a>.</p>
 </body>
 </html>

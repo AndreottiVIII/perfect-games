@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grace days · Perfect games</title>
+<meta name="description" content="There are more than twice as many perfect games as chance alone would produce: 23 against 9.5.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">Perfect games</a>
+  <nav aria-label="Pages">
+    <a href="index.html">The curve</a>
+    <a href="how-it-falls.html">How it falls</a>
+    <a href="grace-days.html" aria-current="page">Grace days</a>
+    <a href="hidden-gems.html">Hidden gems</a>
+    <a href="the-21-games.html">The 21 games</a>
+    <a href="ballparks.html">Ballparks</a>
+    <a href="torture-test.html">Torture test</a>
+  </nav>
+</header>
+
+<main>
+  <h1>There are more than twice as many perfect games as chance alone would produce: 23 against 9.5.</h1>
+  <p class="lead">Picture baseball without days of grace: every batter reaches base at the usual rate for his season, his lineup spot and his trip through the order, and what one batter does tells you nothing about the next. How many games would get to 27 outs in a row? We compare that with what actually happened.</p>
+
+  <div class="tiles">
+    <div class="tile"><span class="value">23 <small>vs 9.5</small></span><span class="label">games that reached 27 outs in a row (the 21 perfect games plus Haddix and Pedro Martínez), against the number expected if every batter were independent</span></div>
+    <div class="tile"><span class="value">17 <small>vs 4.1</small></span><span class="label">pitchers with at least 5 starts of 15 or more batters retired in a row, against the number expected if all pitchers were alike</span></div>
+  </div>
+
+  <figure class="chart" id="grafico-grazia">
+    <figcaption>
+      <strong>Games still perfect: how many times more than expected, after each batter</strong>
+      <span class="note">1 means “exactly what chance predicts”. The light band is the margin of uncertainty (95% interval): it widens toward the end because there are few cases.</span>
+    </figcaption>
+    <div class="plot"></div>
+  </figure>
+
+  <ul class="points">
+    <li>Through the first 3 batters chance gets it exactly right: the ratio is 1.00.</li>
+    <li>Then the gap grows slowly, with no sharp threshold: 1.07 after 9 batters, 1.13 after 12, 1.43 after 18, 2.4 after 27. The difference is already clear by the 6th to 9th batter.</li>
+    <li>At each batter the chance of breaking up the perfect game is only a little lower than expected: −2% from the 4th to the 8th batter, −5% from the 9th to the 17th, −12% from the 18th to the 27th. Small differences that, batter after batter, add up to more than double.</li>
+    <li>Part of it is steady skill: 17 pitchers have at least 5 starts with 15 or more batters retired in a row, against 4.1 expected. Max Scherzer and Nolan Ryan lead with 7 starts each.</li>
+    <li>How much is left over for a true “day of grace” these data cannot separate from skill. Under the plain model, getting 21 or more perfect games by pure chance happens about 1 time in 1,000. Even after allowing for the quality of the starting pitcher, the expected number only rises to 10.7 (about 4 times in 1,000).</li>
+  </ul>
+
+  <details id="numeri-grazia" class="data">
+    <summary>The numbers behind the chart</summary>
+    <div class="body"></div>
+  </details>
+
+  <details>
+    <summary>How we worked it out</summary>
+    <div class="body">
+      <p>The “every batter independent” model uses every plate appearance from 1908 to 2025, counted by season, league, lineup spot, trip through the order, whether the pitcher is batting, and only with the bases empty (nobody on yet in that half-inning). For each side and each batter it takes the chance of reaching base in that situation; the chance of staying perfect is the product, batter after batter.</p>
+      <p>The comparison is on the share of sides still perfect after n batters: actual divided by expected. After 27 batters the actual share is 1 in 17,457, the expected one 1 in 42,263. The margin of uncertainty comes from Greenwood’s formula.</p>
+      <p>The 23 actual cases include Harvey Haddix (36 straight outs in 1959) and Pedro Martínez (27 in 1995): they count because they got past 27 outs, even though neither is a perfect game.</p>
+      <p>A second version adds the quality of the starting pitcher, estimated from his other starts: the expected number rises to 10.7 (chance of 21 or more by luck about 4 in 1,000). A cruder model, with a single rate per season and all situations mixed together, predicts just 1.9, but it is wrong on purpose: it also counts plate appearances with runners on, when reaching base is easier.</p>
+      <p>Limits: the model knows nothing about the opponent, the ballpark or the day, and “bases empty” is approximate. Code: <code>src/come_cala.py</code>; full numbers in <code>output/come_cala.md</code>.</p>
+    </div>
+  </details>
+</main>
+
+<footer>
+  <p>Data: Retrosheet, regular season 1908-2025. Code and results: <a href="https://github.com/AndreottiVIII/perfect-games">github.com/AndreottiVIII/perfect-games</a>.</p>
+  <p>The information used here was obtained free of charge from and is copyrighted by Retrosheet. Interested parties may contact Retrosheet at "www.retrosheet.org".</p>
+</footer>
+
+<!-- build:dati-grazia -->
+<script type="application/json" id="dati-grazia">{"punti":[{"n":1,"s":0.649581,"s0":0.649621,"ratio":0.999938,"lo":0.99767,"hi":1.00221},{"n":2,"s":0.431037,"s0":0.431154,"ratio":0.999729,"lo":0.996185,"hi":1.00328},{"n":3,"s":0.277306,"s0":0.277454,"ratio":0.999466,"lo":0.994492,"hi":1.00447},{"n":4,"s":0.18085,"s0":0.180476,"ratio":1.00207,"lo":0.995503,"hi":1.00869},{"n":5,"s":0.121643,"s0":0.119802,"ratio":1.01537,"lo":1.00698,"hi":1.02384},{"n":6,"s":0.0829571,"s0":0.0809993,"ratio":1.02417,"lo":1.0137,"hi":1.03475},{"n":7,"s":0.0574066,"s0":0.0554281,"ratio":1.03569,"lo":1.0228,"hi":1.04875},{"n":8,"s":0.0405958,"s0":0.0385631,"ratio":1.05271,"lo":1.03701,"hi":1.06865},{"n":9,"s":0.0313787,"s0":0.0293749,"ratio":1.06821,"lo":1.05003,"hi":1.08672},{"n":10,"s":0.0210128,"s0":0.0192061,"ratio":1.09407,"lo":1.07123,"hi":1.11739},{"n":11,"s":0.0139812,"s0":0.0127355,"ratio":1.09781,"lo":1.06969,"hi":1.12668},{"n":12,"s":0.00925198,"s0":0.00820982,"ratio":1.12694,"lo":1.09147,"hi":1.16357},{"n":13,"s":0.00632795,"s0":0.005334,"ratio":1.18634,"lo":1.14128,"hi":1.23319},{"n":14,"s":0.0043413,"s0":0.00353984,"ratio":1.22641,"lo":1.17033,"hi":1.28518},{"n":15,"s":0.00299614,"s0":0.00238173,"ratio":1.25797,"lo":1.18901,"hi":1.33093},{"n":16,"s":0.00217177,"s0":0.00161899,"ratio":1.34143,"lo":1.25543,"hi":1.43333},{"n":17,"s":0.00153169,"s0":0.00111896,"ratio":1.36885,"lo":1.26495,"hi":1.48129},{"n":18,"s":0.00121041,"s0":0.000848007,"ratio":1.42736,"lo":1.30604,"hi":1.55994},{"n":19,"s":0.000819394,"s0":0.000554805,"ratio":1.4769,"lo":1.32572,"hi":1.64532},{"n":20,"s":0.000612677,"s0":0.000365257,"ratio":1.67739,"lo":1.48043,"hi":1.90055},{"n":21,"s":0.000393508,"s0":0.000234254,"ratio":1.67984,"lo":1.43737,"hi":1.96321},{"n":22,"s":0.000278942,"s0":0.000152136,"ratio":1.83351,"lo":1.52359,"hi":2.20647},{"n":23,"s":0.000191773,"s0":0.000100731,"ratio":1.90382,"lo":1.52277,"hi":2.38022},{"n":24,"s":0.00013449,"s0":6.74901e-05,"ratio":1.99274,"lo":1.52625,"hi":2.6018},{"n":25,"s":0.000104603,"s0":4.59659e-05,"ratio":2.27567,"lo":1.6818,"hi":3.07925},{"n":26,"s":8.71695e-05,"s0":3.17018e-05,"ratio":2.74967,"lo":1.97428,"hi":3.8296},{"n":27,"s":5.72828e-05,"s0":2.36616e-05,"ratio":2.42091,"lo":1.60878,"hi":3.64303}],"reali_27":23.0382,"attese_27_N2":9.51634,"attese_27_N3":10.7033}</script>
+<!-- /build:dati-grazia -->
+<script src="charts.js"></script>
+</body>
+</html>

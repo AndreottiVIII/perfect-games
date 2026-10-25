@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Torture test · Perfect games</title>
+<meta name="description" content="We tested 29 ideas about what makes perfect starts last, with a discovery half and a confirmation half. What held up, what fell apart, and the bug a blind reviewer caught.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">Perfect games</a>
+  <nav aria-label="Pages">
+    <a href="index.html">The curve</a>
+    <a href="how-it-falls.html">How it falls</a>
+    <a href="grace-days.html">Grace days</a>
+    <a href="hidden-gems.html">Hidden gems</a>
+    <a href="the-21-games.html">The 21 games</a>
+    <a href="ballparks.html">Ballparks</a>
+    <a href="torture-test.html" aria-current="page">Torture test</a>
+  </nav>
+</header>
+
+<main>
+  <h1>We tortured the data with 29 ideas. A handful held up, most fell apart, and a blind reviewer caught a bug.</h1>
+  <p class="lead">Torture the data long enough and it will confess to anything. So we set a rule first. Every idea was explored on the even-numbered seasons only (1908, 1910, …). To count, it then had to show up again on the odd-numbered seasons, which it had never seen: pointing the same way, and clear of chance (p &lt; 0.05) in both halves. After that, an independent reviewer who had not seen our code recomputed the main claims from scratch with its own.</p>
+
+  <div class="tiles">
+    <div class="tile"><span class="value">29</span><span class="label">ideas tested on even seasons, then checked on odd ones (25 written down before looking, 4 variants added along the way)</span></div>
+    <div class="tile"><span class="value">5</span><span class="label">new findings that held up, all of them small</span></div>
+    <div class="tile"><span class="value">1</span><span class="label">bug found by the blind reviewer, fixed, everything re-run</span></div>
+  </div>
+
+  <figure class="chart" id="grafico-tortura">
+    <figcaption>
+      <strong>Every idea, found on even seasons and checked on odd ones</strong>
+      <span class="note">Each dot is how much the idea changes the odds that a batter reaches base during a perfect start, with its 95% interval. 1 = no effect; left of 1, perfect starts last longer; right of 1, they end sooner. Each idea has its own unit (yes or no, per decade, per +10°F…), so compare each pair of dots with the line at 1, not rows with each other. Arrows mark intervals that run off the scale; dots off the scale are listed at the right. Hover over or tap a row for the numbers.</span>
+    </figcaption>
+    <div class="legend">
+      <span class="key"><span class="ring"></span>Even seasons (discovery)</span>
+      <span class="key"><span class="ring full"></span>Odd seasons (confirmation)</span>
+      <span class="key"><span class="swatch" style="border-color:#b3261e"></span>New finding that held up</span>
+      <span class="key"><span class="swatch" style="border-color:#2b2b2b"></span>Other ideas that passed the rule</span>
+      <span class="key"><span class="swatch" style="border-color:#8c8c8c"></span>Did not pass</span>
+    </div>
+    <div class="plot"></div>
+  </figure>
+
+  <details id="numeri-tortura" class="data">
+    <summary>The numbers behind the chart</summary>
+    <div class="body">
+      <p class="note">Odds ratio with its 95% interval in brackets. Not in the chart: the catcher test (it measures something else, see below) and a duplicate of the first-pitch test that also counts walks.</p>
+    </div>
+  </details>
+
+  <h2>What survived</h2>
+  <ul class="points">
+    <li><strong>Heat helps the hitters, a little.</strong> On hotter days batters reach base slightly more often during a perfect start: about +2% in the odds for every 10°F, the same in both halves (odds ratio 1.019 and 1.020). It holds within the same ballpark, the same month, day or night. That adds up: from 50°F to 90°F the chance of getting 18 batters deep drops by about a third. Temperature is mostly recorded only from the 1990s on, so this rests on about 590,000 plate appearances.</li>
+    <li><strong>Fewer walks late.</strong> When a perfect start ends at batters 1-9, it ends on a walk 25.7% of the time; at batters 19-27, 17%. After allowing for lineup spot, pinch hitters, season and the pitcher’s usual control, the odds that the break is a walk are about 0.63-0.66 times those early in the game. Same direction in both halves, though the odd-season half alone just misses the bar (p ≈ 0.055); the drop at batters 10-18 is rock-solid in both.</li>
+    <li><strong>Late, the hitters jump on the first pitch.</strong> Since 1988, among breaks that are not walks, the share decided on the very first pitch grows with depth: 13% at batters 1-9, 16% at 10-18, 20% at 19-27 (odds ratio 1.30 and 1.24 in the two halves). Hitters seeing the pitcher for the second or third time get more aggressive, and the perfect game dies more often on one swing than on a long count. The last group is small: only 34 cases.</li>
+    <li><strong>The home team pitching lasts longer, but only early.</strong> Batter by batter, the odds of reaching base are about 0.915 times lower when the home team is in the field, the same in both halves. At the first batter of the game 33.6% of road hitters reach base against 36.4% of home hitters. The blind reviewer showed this is just the ordinary home-field edge in hitting: it is strongest at the first batter and fades to nothing after about 18 batters. So the home side gets to 18 batters about 1.33 times as often as the road side, not the 1.6 times we first claimed.</li>
+    <li><strong>The leadoff hitter’s edge is shrinking, slightly.</strong> The first batter of the game used to reach base about 11% more often than the next ones (1908-1919); since 2000 it is about 2.5% more. Consistent in both halves, but tiny.</li>
+  </ul>
+
+  <h2>Known effects that came back</h2>
+  <p class="note">These are things everyone already knows. They are here as a test of the method: if it had missed them, we could not trust anything else it found.</p>
+  <ul class="points">
+    <li><strong>Pitcher quality</strong> is by far the strongest factor: a starter one notch (one standard deviation) worse that season raises the odds of a baserunner by 9%, in both halves.</li>
+    <li><strong>Offense quality</strong>: a lineup one notch better raises them by about 4.5%.</li>
+    <li><strong>Platoon</strong>: a batter hitting from the same side the pitcher throws reaches base less often (odds ratio 0.92 in both halves).</li>
+    <li><strong>The lower mound of 1969</strong>: more baserunners afterwards (1.06 in both halves).</li>
+    <li><strong>The universal DH of 2022</strong>, in the pitcher’s spot only: the odds of a baserunner there more than double (2.19 in both halves).</li>
+    <li><strong>Errors</strong>: fewer and fewer perfect starts end on an error, from 5.3% of breaks (1908-1945) to 2.3% (since 2009).</li>
+  </ul>
+
+  <h2>Looked real, wasn’t</h2>
+  <ul class="points">
+    <li><strong>The first time a starter faces a team</strong> passed the rule, but the wrong way round: hitters did slightly better. The reason is who gets that matchup: pitchers who face a team only once a season are, on average, weaker pitchers. Comparing only starters who face the team two or more times, and allowing for pitcher quality, the effect vanishes (1.00 in the even half, slightly the other way in the odd one).</li>
+    <li><strong>The catcher</strong>: catchers who looked good in even seasons also looked good in odd ones. But once you allow for the team and season, almost all of it disappears: the “good catchers” were good teams and good pitching staffs, not the man behind the plate.</li>
+    <li><strong>September</strong>: in even seasons perfect starts lasted clearly longer in September and October (p = 0.0001). In odd seasons, nothing at all (p = 0.47). A textbook fluke, and exactly what the even/odd rule is there to catch.</li>
+  </ul>
+
+  <h2>Tried and failed</h2>
+  <ul class="points">
+    <li>Second game of a doubleheader: no difference.</li>
+    <li>Day game after a night game, for the hitters: a hint in the even half (p = 0.047), not confirmed in the odd one.</li>
+    <li>The day after an extra-inning game: nothing.</li>
+    <li>A big lead (4+ runs) late in a perfect start: no difference between a blowout and a close game.</li>
+    <li>Pitch clock and shift ban, 2023: slightly fewer baserunners since, but not confirmed (p = 0.04, then 0.09).</li>
+    <li>Expansion teams in their first season: only in the odd half (1961, 1969, 1977, 1993), not in the even one (1962, 1998).</li>
+    <li>The integration era, NL against AL in the 1950s: nothing.</li>
+    <li>The DH arriving in the American League in 1973: nothing over the whole lineup, and contradictory in the pitcher’s spot alone.</li>
+    <li>The universal DH of 2022 over the whole lineup: nothing (in the pitcher’s spot alone it is a known effect, see above).</li>
+    <li>How many same-side hitters a lineup stacks: tiny, and already explained by each single matchup.</li>
+    <li>Unravelling after the first runner: once a late perfect start breaks, the next three hitters do not pile on, but they are not held down either.</li>
+    <li>The home-plate umpire: tested earlier on <a href="hidden-gems.html">Hidden gems</a> (294 umpires), nothing beyond chance; not re-run here.</li>
+  </ul>
+  <p class="note">Not tried, and why: three-ball counts on their own (walks are already covered above); individual catchers and pitchers by name (too few cases for any one person); the last weeks of the season (largely covered by September, which failed).</p>
+
+  <h2>Still open: six perfect games in 2010-2012</h2>
+  <p class="lead">Six of the 21 perfect games, counting Galarraga’s, came in three seasons. Could that be luck?</p>
+  <ul class="points">
+    <li>How often would chance put 6 or more of the 21 in some three-season window? By our simulation, about 1% of the time (about 5.5% if Galarraga’s game is left out). The blind reviewer, with its own model, got about 0.4% (2.9%).</li>
+    <li>Those figures flatter the surprise: we picked the window after seeing the cluster. Scan windows of 1 to 6 seasons instead of 3, and the answer ranges from 0.2% to 12% depending on the length.</li>
+    <li>2010-2012 was not a pitcher-friendly stretch on the whole curve. Allowing for the low scoring of those years, the share of games still perfect after 9, 12, 15 and 18 batters was, if anything, a little below the rest of history, and early breaks came at 99.2% of the expected rate, right in the middle of all three-season windows.</li>
+    <li>Verdict: unusual, unexplained, possibly luck. With these data luck and a real cluster at the very top of the curve cannot be told apart.</li>
+  </ul>
+
+  <h2>The blind reviewer caught a bug</h2>
+  <p class="lead">Our program reads Retrosheet’s play-by-play. It treated a batter who reached on an error after another fielder had touched the ball (scored like “6E3”: the shortstop throws, the first baseman drops it) as out. That affected 537 of the 402,184 pitching sides. We fixed it and re-ran every number on the site. The 21 perfect games did not change.</p>
+
+  <details>
+    <summary>How we worked it out</summary>
+    <div class="body">
+      <p>The main test treats each of the 1.18 million plate appearances inside a still-perfect start (batters 1-27, 402,184 pitching sides) as a yes-or-no question: does the batter reach base? A regression holds season, batter number and DH fixed; the result is an odds ratio with its 95% interval, with uncertainty computed game by game.</p>
+      <p>The rule: an idea survives only if p &lt; 0.05 in both the even and the odd half, pointing the same way. If nothing were real, 29 tests would let through about 0.07 false survivors on average. 25 ideas were written down before the odd seasons were opened; 4 variants were added after seeing the even ones, each with its reason recorded.</p>
+      <p>The walk and 2010-2012 checks come from a separate program with the same even/odd rule; the walk test uses only the breaks themselves (who reached base, and how).</p>
+      <p>Code: <code>src/tortura_extract.py</code>, <code>src/tortura_lib.py</code>, <code>src/tortura.py</code>, <code>src/tortura_extra.py</code>, <code>src/tortura_check.py</code>, <code>src/verifiche.py</code>. Full results, in Italian: <code>output/tortura.md</code>, <code>output/verifiche.md</code>, <code>output/tortura_risultati.csv</code>; the list of ideas written in advance: <code>output/tortura_ipotesi.md</code>.</p>
+    </div>
+  </details>
+</main>
+
+<footer>
+  <p>Data: Retrosheet, regular season 1908-2025. Code and results: <a href="https://github.com/AndreottiVIII/perfect-games">github.com/AndreottiVIII/perfect-games</a>.</p>
+  <p>The information used here was obtained free of charge from and is copyrighted by Retrosheet. Interested parties may contact Retrosheet at "www.retrosheet.org".</p>
+</footer>
+
+<!-- build:dati-tortura -->
+<script type="application/json" id="dati-tortura">{"ipotesi":[{"id":"T17","gruppo":"new","nome":"Home team pitching","regge":true,"pari":{"OR":0.914432,"lo":0.904603,"hi":0.924368,"p":3.46113e-59,"n":584340},"dispari":{"OR":0.915717,"lo":0.905949,"hi":0.92559,"p":2.88468e-58,"n":597351}},{"id":"T25","gruppo":"new","nome":"Temperature (per +10°F)","regge":true,"pari":{"OR":1.01963,"lo":1.01236,"hi":1.02695,"p":1.00135e-07,"n":289733},"dispari":{"OR":1.01945,"lo":1.01223,"hi":1.02672,"p":1.07061e-07,"n":300168}},{"id":"T19","gruppo":"new","nome":"First-pitch strike, batters 10+ vs 1-9","regge":true,"pari":{"OR":0.954918,"lo":0.914955,"hi":0.996627,"p":0.0344375,"n":253999},"dispari":{"OR":0.939053,"lo":0.901111,"hi":0.978593,"p":0.00280488,"n":266775}},{"id":"T20r","gruppo":"new","nome":"Perfect game ends on the first pitch, batters 10+ vs 1-9 (walks left out)","regge":true,"pari":{"OR":1.30328,"lo":1.16227,"hi":1.4614,"p":5.7935e-06,"n":63991},"dispari":{"OR":1.24031,"lo":1.10628,"hi":1.39058,"p":0.000223297,"n":67441}},{"id":"T21","gruppo":"new","nome":"Leadoff hitter’s edge, per decade","regge":true,"pari":{"OR":0.993744,"lo":0.989689,"hi":0.997816,"p":0.00263254,"n":556807},"dispari":{"OR":0.992677,"lo":0.988732,"hi":0.996638,"p":0.000297071,"n":569622}},{"id":"T02","gruppo":"known","nome":"Pitcher quality, that season (per +1 SD)","regge":true,"pari":{"OR":1.09332,"lo":1.0869,"hi":1.09977,"p":7.55363e-194,"n":584340},"dispari":{"OR":1.09458,"lo":1.08829,"hi":1.1009,"p":1.42628e-207,"n":597351}},{"id":"T03","gruppo":"known","nome":"Pitcher quality, career to date (per +1 SD)","regge":true,"pari":{"OR":1.07531,"lo":1.06917,"hi":1.08148,"p":1.34112e-136,"n":584340},"dispari":{"OR":1.07288,"lo":1.0668,"hi":1.07899,"p":4.23094e-130,"n":597351}},{"id":"T01","gruppo":"known","nome":"Opposing offense quality (per +1 SD)","regge":true,"pari":{"OR":1.04382,"lo":1.03812,"hi":1.04955,"p":3.90455e-53,"n":584340},"dispari":{"OR":1.04564,"lo":1.03996,"hi":1.05135,"p":5.58753e-58,"n":597351}},{"id":"T04","gruppo":"known","nome":"Batter hits from the same side the pitcher throws","regge":true,"pari":{"OR":0.921042,"lo":0.910284,"hi":0.931927,"p":7.58957e-43,"n":504794},"dispari":{"OR":0.919871,"lo":0.909214,"hi":0.930653,"p":7.88848e-45,"n":514998}},{"id":"T06","gruppo":"known","nome":"Mound lowered in 1969","regge":true,"pari":{"OR":1.05709,"lo":1.02103,"hi":1.09441,"p":0.00171462,"n":58619},"dispari":{"OR":1.06212,"lo":1.02598,"hi":1.09954,"p":0.000645478,"n":59043}},{"id":"T08r","gruppo":"known","nome":"Universal DH 2022, pitcher’s spot only","regge":true,"pari":{"OR":2.19833,"lo":1.24615,"hi":3.87808,"p":0.00653125,"n":1082},"dispari":{"OR":2.18864,"lo":1.3046,"hi":3.67173,"p":0.00300436,"n":1267}},{"id":"T23","gruppo":"known","nome":"Errors as the way it ends, per decade","regge":true,"pari":{"OR":0.906857,"lo":0.8993,"hi":0.914478,"p":4.79823e-116,"n":198696},"dispari":{"OR":0.9117,"lo":0.904519,"hi":0.918939,"p":3.67249e-116,"n":203463}},{"id":"T18","gruppo":"fooled","nome":"Starter’s first look at that team this season","regge":true,"pari":{"OR":1.0359,"lo":1.02439,"hi":1.04755,"p":6.22983e-10,"n":583724},"dispari":{"OR":1.02903,"lo":1.0177,"hi":1.04049,"p":4.06476e-07,"n":596529}},{"id":"T18r","gruppo":"fooled","nome":"Same, only starters who face the team 2+ times, pitcher quality controlled","regge":false,"pari":{"OR":0.999778,"lo":0.986805,"hi":1.01292,"p":0.97341,"n":463200},"dispari":{"OR":0.978764,"lo":0.966236,"hi":0.991453,"p":0.00109072,"n":467966}},{"id":"T15","gruppo":"fooled","nome":"September-October vs April-August","regge":false,"pari":{"OR":0.971645,"lo":0.957814,"hi":0.985676,"p":8.41269e-05,"n":584340},"dispari":{"OR":0.995016,"lo":0.981231,"hi":1.009,"p":0.482759,"n":597351}},{"id":"T05","gruppo":"failed","nome":"Lineup share of same-side batters (per +1 SD)","regge":false,"pari":{"OR":0.989584,"lo":0.983671,"hi":0.995532,"p":0.000616043,"n":491633},"dispari":{"OR":0.994926,"lo":0.989046,"hi":1.00084,"p":0.0925824,"n":501357}},{"id":"T07","gruppo":"failed","nome":"AL designated hitter from 1973, all batters","regge":false,"pari":{"OR":0.935568,"lo":0.87785,"hi":0.99708,"p":0.0403629,"n":68689},"dispari":{"OR":0.968147,"lo":0.908347,"hi":1.03188,"p":0.31966,"n":68116}},{"id":"T07r","gruppo":"failed","nome":"AL designated hitter from 1973, pitcher’s spot only","regge":false,"pari":{"OR":0.708909,"lo":0.374055,"hi":1.34352,"p":0.291562,"n":1039},"dispari":{"OR":2.66724,"lo":1.40709,"hi":5.05594,"p":0.00264106,"n":980}},{"id":"T08","gruppo":"failed","nome":"Universal DH 2022, all batters","regge":false,"pari":{"OR":0.957774,"lo":0.894334,"hi":1.02571,"p":0.217242,"n":61130},"dispari":{"OR":1.0494,"lo":0.985523,"hi":1.11741,"p":0.132365,"n":75443}},{"id":"T09","gruppo":"failed","nome":"Pitch clock and shift ban, 2023","regge":false,"pari":{"OR":0.955749,"lo":0.915504,"hi":0.997763,"p":0.0392028,"n":61130},"dispari":{"OR":0.961337,"lo":0.919552,"hi":1.00502,"p":0.0820253,"n":75443}},{"id":"T10","gruppo":"failed","nome":"Expansion team in its first season","regge":false,"pari":{"OR":1.07292,"lo":0.973227,"hi":1.18282,"p":0.157197,"n":23395},"dispari":{"OR":1.09977,"lo":1.02871,"hi":1.17575,"p":0.00526337,"n":45596}},{"id":"T11","gruppo":"failed","nome":"Integration: NL vs AL in the 1950s","regge":false,"pari":{"OR":0.994773,"lo":0.931542,"hi":1.0623,"p":0.875714,"n":64573},"dispari":{"OR":0.958082,"lo":0.894954,"hi":1.02566,"p":0.218194,"n":60244}},{"id":"T12","gruppo":"failed","nome":"Second game of a doubleheader","regge":false,"pari":{"OR":1.01377,"lo":0.991212,"hi":1.03684,"p":0.233587,"n":584340},"dispari":{"OR":1.00804,"lo":0.985742,"hi":1.03084,"p":0.482917,"n":597351}},{"id":"T13","gruppo":"failed","nome":"Day game after a night game (batting side)","regge":false,"pari":{"OR":0.979558,"lo":0.960103,"hi":0.999408,"p":0.0436015,"n":584340},"dispari":{"OR":0.984773,"lo":0.965537,"hi":1.00439,"p":0.127359,"n":597351}},{"id":"T14","gruppo":"failed","nome":"Day after an extra-inning game (batting side)","regge":false,"pari":{"OR":0.997282,"lo":0.976351,"hi":1.01866,"p":0.801419,"n":584340},"dispari":{"OR":0.999179,"lo":0.978432,"hi":1.02037,"p":0.938865,"n":597351}},{"id":"T16","gruppo":"failed","nome":"Pitching side up by 4+ runs (batters 10+)","regge":false,"pari":{"OR":1.01269,"lo":0.934607,"hi":1.0973,"p":0.75806,"n":19413},"dispari":{"OR":0.938728,"lo":0.869541,"hi":1.01342,"p":0.105504,"n":19522}},{"id":"T22","gruppo":"failed","nome":"Unravelling: next 3 batters after a late first runner","regge":false,"pari":{"OR":0.938441,"lo":0.8046,"hi":1.09455,"p":0.418351,"n":335470},"dispari":{"OR":0.872773,"lo":0.743234,"hi":1.02489,"p":0.0968973,"n":342702}}]}</script>
+<!-- /build:dati-tortura -->
+<script src="charts.js"></script>
+</body>
+</html>
