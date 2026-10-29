@@ -5,8 +5,10 @@
   'use strict';
   var NS = 'http://www.w3.org/2000/svg';
   var C = {
-    ink: '#111111', ink2: '#2b2b2b', muted: '#666666', grid: '#ececec', axis: '#c8c8c8',
-    context: '#bdbdbd', accent: '#b3261e', wash: 'rgba(179,38,30,0.10)', band: '#f4f4f2', paper: '#ffffff'
+    // tabellone: bianco per il dato principale, giallo per l'evidenza, verdi spenti per il contesto
+    ink: '#f4f6f1', ink2: '#dfe9e2', muted: '#9fbfac', grid: '#0b2017', axis: '#6f9a82',
+    context: '#7fae93', accent: '#ffd21f', wash: 'rgba(244,246,241,0.12)', band: 'rgba(11,32,23,0.45)',
+    paper: '#163c29', slot: '#0b2017'
   };
 
   // ---------------------------------------------------------------- formati all'inglese (17,457 e 28.6%)
@@ -23,7 +25,7 @@
     return e;
   }
   function text(parent, x, y, s, attrs) {
-    var a = { x: x, y: y, fill: C.muted, 'font-size': 12 };
+    var a = { x: x, y: y, fill: C.muted, 'font-size': 15 };
     for (var k in attrs) a[k] = attrs[k];
     var t = svg('text', a, parent);
     t.textContent = s;
@@ -110,24 +112,24 @@
       // griglia e tacche
       o.y.ticks.forEach(function (t) {
         var y = sy(t.v);
-        svg('line', { x1: m.l, x2: m.l + iw, y1: y, y2: y, stroke: C.grid, 'stroke-width': 1 }, s);
+        svg('line', { x1: m.l, x2: m.l + iw, y1: y, y2: y, stroke: C.grid, 'stroke-width': 1.5 }, s);
         text(s, m.l - 8, y + 4, t.label, { 'text-anchor': 'end' });
       });
-      svg('line', { x1: m.l, x2: m.l + iw, y1: m.t + ih, y2: m.t + ih, stroke: C.axis, 'stroke-width': 1 }, s);
+      svg('line', { x1: m.l, x2: m.l + iw, y1: m.t + ih, y2: m.t + ih, stroke: C.axis, 'stroke-width': 2 }, s);
       var xt = narrow && o.x.ticksNarrow ? o.x.ticksNarrow : o.x.ticks;
       xt.forEach(function (t) {
         svg('line', { x1: sx(t), x2: sx(t), y1: m.t + ih, y2: m.t + ih + 4, stroke: C.axis }, s);
-        text(s, sx(t), m.t + ih + 18, String(t), { 'text-anchor': 'middle' });
+        text(s, sx(t), m.t + ih + 21, String(t), { 'text-anchor': 'middle', fill: C.ink2, 'font-size': 16 });
       });
-      if (o.x.label) text(s, m.l + iw / 2, H - 6, narrow && o.x.labelNarrow ? o.x.labelNarrow : o.x.label, { 'text-anchor': 'middle', fill: C.ink2, 'font-size': 12.5 });
+      if (o.x.label) text(s, m.l + iw / 2, H - 6, narrow && o.x.labelNarrow ? o.x.labelNarrow : o.x.label, { 'text-anchor': 'middle', fill: C.muted, 'font-size': 15, 'letter-spacing': '0.06em' });
       if (o.hline) {
         var hy = sy(o.hline.y);
-        svg('line', { x1: m.l, x2: m.l + iw, y1: hy, y2: hy, stroke: C.ink2, 'stroke-width': 1 }, s);
-        if (o.hline.label) text(s, m.l + 4, hy + 18, narrow && o.hline.labelNarrow ? o.hline.labelNarrow : o.hline.label, { fill: C.ink2 });
+        svg('line', { x1: m.l, x2: m.l + iw, y1: hy, y2: hy, stroke: C.muted, 'stroke-width': 1.5, 'stroke-dasharray': '6 4' }, s);
+        if (o.hline.label) text(s, m.l + 6, hy + 20, narrow && o.hline.labelNarrow ? o.hline.labelNarrow : o.hline.label, { fill: C.ink2 });
       }
       (o.vlines || []).forEach(function (v) {
-        svg('line', { x1: sx(v.x), x2: sx(v.x), y1: m.t, y2: m.t + ih, stroke: C.ink2, 'stroke-width': 1 }, s);
-        if (v.label) text(s, sx(v.x) - 6, m.t + 12, narrow && v.labelNarrow ? v.labelNarrow : v.label, { 'text-anchor': 'end', fill: C.ink2 });
+        svg('line', { x1: sx(v.x), x2: sx(v.x), y1: m.t, y2: m.t + ih, stroke: C.muted, 'stroke-width': 1.5 }, s);
+        if (v.label) text(s, sx(v.x) - 8, m.t + 14, narrow && v.labelNarrow ? v.labelNarrow : v.label, { 'text-anchor': 'end', fill: C.ink2 });
       });
       // serie: area (intervallo), barre di errore, linee, punti
       o.series.forEach(function (se) {
@@ -158,21 +160,24 @@
         });
         if (se.markers) pts.forEach(function (p) {
           var hollow = p.faded && se.hollowFaded;
-          svg('circle', { cx: sx(p.x), cy: sy(p.y), r: 4, fill: hollow ? C.paper : se.color,
+          svg('rect', { x: sx(p.x) - 4, y: sy(p.y) - 4, width: 8, height: 8, fill: hollow ? C.paper : se.color,
             stroke: hollow ? se.color : C.paper, 'stroke-width': hollow ? 1.5 : 2 }, s);
         });
       });
       (o.dots || []).forEach(function (d) {
-        svg('circle', { cx: sx(d.x), cy: sy(d.y), r: 4.5, fill: d.color, stroke: C.paper, 'stroke-width': 2 }, s);
+        svg('rect', { x: sx(d.x) - 7, y: sy(d.y) - 7, width: 14, height: 14, fill: d.color, stroke: C.slot, 'stroke-width': 2 }, s);
       });
+      // le etichette in grassetto stanno in una feritoia nera con cifre gialle (misurate dopo, a svg in pagina)
+      var slotted = [];
       (o.labels || []).forEach(function (l) {
         if (narrow && l.wide) return;
-        text(s, sx(l.x) + (l.dx || 0), sy(l.y) + (l.dy || 0), l.text,
-          { 'text-anchor': l.anchor || 'start', fill: C.ink, 'font-size': 12.5, 'font-weight': l.bold ? 650 : 400 });
+        var lt = text(s, sx(l.x) + (l.dx || 0), sy(l.y) + (l.dy || 0), l.text,
+          { 'text-anchor': l.anchor || 'start', fill: l.bold ? C.accent : C.ink2, 'font-size': l.bold ? 20 : 15, 'font-weight': l.bold ? 900 : 700 });
+        if (l.bold) slotted.push(lt);
       });
 
       // cursore: linea verticale che si aggancia al battitore più vicino
-      var cross = svg('line', { y1: m.t, y2: m.t + ih, stroke: C.ink2, 'stroke-width': 1, visibility: 'hidden' }, s);
+      var cross = svg('line', { y1: m.t, y2: m.t + ih, stroke: C.muted, 'stroke-width': 1.5, visibility: 'hidden' }, s);
       var hot = svg('g', {}, s);
       var hit = svg('rect', { x: m.l - step / 2, y: m.t, width: iw + step, height: ih, fill: 'transparent',
         tabindex: 0, 'aria-label': 'Chart values: use the left and right arrow keys' }, s);
@@ -187,7 +192,7 @@
         var c = o.tip(x);
         (c.marks || []).forEach(function (mk) {
           if (mk.y === null || mk.y === undefined) return;
-          svg('circle', { cx: X, cy: sy(mk.y), r: 5, fill: mk.color, stroke: C.paper, 'stroke-width': 2 }, hot);
+          svg('rect', { x: X - 6, y: sy(mk.y) - 6, width: 12, height: 12, fill: mk.color, stroke: C.slot, 'stroke-width': 2 }, hot);
         });
         var ys = (c.marks || []).filter(function (mk) { return mk.y != null; }).map(function (mk) { return sy(mk.y); });
         var y = ys.length ? Math.min.apply(null, ys) : m.t + ih / 2;
@@ -214,8 +219,13 @@
         if (e.key === 'Escape') hide();
       });
       plot.insertBefore(s, plot.firstChild);
+      slotted.forEach(function (lt) {
+        var b = lt.getBBox();
+        s.insertBefore(svg('rect', { x: b.x - 6, y: b.y - 1, width: b.width + 12, height: b.height + 2, fill: C.slot }), lt);
+      });
     }
     render();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(render);
     onResize(render);
     document.addEventListener('pointerdown', function (e) { if (!plot.contains(e.target)) tip.hide(); });
     return { render: render };
@@ -252,12 +262,12 @@
     var chart;
     function options() {
       var series = D.epoche.map(function (e) {
-        return { color: state.era === e.id ? C.ink : C.context, width: state.era === e.id ? 2 : 1.25,
+        return { color: state.era === e.id ? C.accent : C.context, width: state.era === e.id ? 3 : 1.5, opacity: state.era === e.id ? 1 : 0.75,
           points: range(0, 27).map(function (n) { return { x: n, y: at(e.s, n) }; }) };
       });
       // l'epoca scelta va disegnata sopra le altre
-      series.sort(function (a, b) { return (a.color === C.ink) - (b.color === C.ink); });
-      series.push({ color: C.accent, width: 3, points: range(0, 27).map(function (n) { return { x: n, y: all.s[n] }; }) });
+      series.sort(function (a, b) { return (a.color === C.accent) - (b.color === C.accent); });
+      series.push({ color: C.ink, width: 4.5, points: range(0, 27).map(function (n) { return { x: n, y: all.s[n] }; }) });
       var key = [9, 18, 27];
       return {
         aria: 'Share of games still perfect after each batter, log scale',
@@ -271,13 +281,13 @@
         labels: key.map(function (n) { return { x: n, y: all.s[n], text: oneIn(all.s[n]), dx: n === 27 ? -8 : 6, dy: n === 27 ? 20 : -10, anchor: n === 27 ? 'end' : 'start', bold: true }; }),
         xs: range(0, 27),
         tip: function (n) {
-          var rows = [{ color: C.accent, value: oneIn(all.s[n]), label: 'all eras' }];
-          var marks = [{ y: all.s[n], color: C.accent }];
+          var rows = [{ color: C.ink, value: oneIn(all.s[n]), label: 'all eras' }];
+          var marks = [{ y: all.s[n], color: C.ink }];
           D.epoche.forEach(function (e) {
             var v = at(e.s, n);
             if (state.era && state.era !== e.id) return;
-            rows.push({ color: state.era === e.id ? C.ink : C.context, value: v === null ? '—' : oneIn(v), label: e.label });
-            if (state.era === e.id && v !== null) marks.push({ y: v, color: C.ink });
+            rows.push({ color: state.era === e.id ? C.accent : C.context, value: v === null ? '—' : oneIn(v), label: e.label });
+            if (state.era === e.id && v !== null) marks.push({ y: v, color: C.accent });
           });
           return { title: n === 0 ? 'Before the first batter' : 'After ' + n + (n === 1 ? ' batter' : ' batters') + ' retired',
             rows: rows, marks: marks,
@@ -328,7 +338,7 @@
       y: { min: 0, max: 0.5, ticks: [0, 0.1, 0.2, 0.3, 0.4, 0.5].map(function (v) { return { v: v, label: pct(v, 0) }; }) },
       bands: [9, 18, 27],
       series: [
-        { color: C.ink2, points: pts(con), ci: ci(con), markers: true, hollowFaded: true },
+        { color: C.ink, points: pts(con), ci: ci(con), markers: true, hollowFaded: true },
         { color: C.accent, points: pts(senza), ci: ci(senza), markers: true, hollowFaded: true }
       ],
       labels: [
@@ -345,9 +355,9 @@
         return { title: 'Batter ' + n,
           rows: [
             { color: C.accent, value: pct(a.h), label: 'no DH (' + int(a.r) + ' sides)' },
-            { color: C.ink2, value: pct(b.h), label: 'with DH (' + int(b.r) + ' sides)' }
+            { color: C.ink, value: pct(b.h), label: 'with DH (' + int(b.r) + ' sides)' }
           ],
-          marks: [{ y: a.h, color: C.accent }, { y: b.h, color: C.ink2 }], notes: notes };
+          marks: [{ y: a.h, color: C.accent }, { y: b.h, color: C.ink }], notes: notes };
       }
     });
     var tb = document.querySelector('#numeri-come-cala .body');
@@ -369,7 +379,7 @@
         label: 'Batters retired in a row', labelNarrow: 'Batters retired in a row' },
       y: { min: 0.5, max: 4, ticks: [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4].map(function (v) { return { v: v, label: v === 1 ? '1' : dec(v, v % 1 ? 1 : 0) }; }) },
       hline: { y: 1, label: '1 = as if every batter were independent', labelNarrow: '1 = pure chance' },
-      series: [{ color: C.accent, width: 2.5, points: P.map(function (p) { return { x: p.n, y: p.ratio }; }),
+      series: [{ color: C.ink, width: 3, points: P.map(function (p) { return { x: p.n, y: p.ratio }; }),
         area: P.map(function (p) { return { x: p.n, lo: p.lo, hi: p.hi }; }) }],
       dots: [9, 18, 27].map(function (n) { return { x: n, y: P[n - 1].ratio, color: C.accent }; }),
       labels: lab,
@@ -378,12 +388,12 @@
         var p = P[n - 1];
         return { title: 'After ' + n + (n === 1 ? ' batter' : ' batters') + ' retired',
           rows: [
-            { color: C.accent, value: dec(p.ratio, 2) + '×', label: 'actual / expected' },
+            { color: C.ink, value: dec(p.ratio, 2) + '×', label: 'actual / expected' },
             { color: null, value: oneIn(p.s), label: 'still perfect, actual' },
             { color: null, value: oneIn(p.s0), label: 'expected by chance' }
           ],
           notes: ['95% interval: ' + dec(p.lo, 2) + '–' + dec(p.hi, 2)],
-          marks: [{ y: p.ratio, color: C.accent }] };
+          marks: [{ y: p.ratio, color: C.ink }] };
       }
     });
     var tb = document.querySelector('#numeri-grazia .body');
@@ -461,8 +471,8 @@
       ['fooled', 'Looked real, wasn’t'],
       ['failed', 'Tried and failed']
     ];
-    var FAIL = '#8c8c8c';
-    function color(h) { return h.gruppo === 'new' ? C.accent : (h.regge ? C.ink2 : FAIL); }
+    var FAIL = '#6f9a82';
+    function color(h) { return h.gruppo === 'new' ? C.accent : (h.regge ? C.ink : FAIL); }
     function pv(p) { return p < 0.001 ? '<0.001' : (p < 0.01 ? p.toFixed(3) : p.toFixed(2)); }
     function or(x) { return dec(x.OR, 2) + ' (' + dec(x.lo, 2) + '–' + dec(x.hi, 2) + ')'; }
 
@@ -534,6 +544,27 @@
       }), 1);
   }
 
+  // ---------------------------------------------------------------- 0. Il tabellone dei 27 battitori (home)
+  function lineScore() {
+    var D = data('dati-curva');
+    var box = document.getElementById('line-score');
+    if (!D || !box) return;
+    var s = D.tutte.s;
+    function f(v) { return v < 10 ? dec(v, 1) : int(v); }
+    var h = '<div class="corner">Inning</div>';
+    for (var i = 1; i <= 9; i++) h += '<div class="hd" style="--hc:' + (i + 1) + ';--pr2:' + (i + 1) + '">' + i + '</div>';
+    ['1st', '2nd', '3rd'].forEach(function (r, k) {
+      h += '<div class="rl" style="--rr:' + (k + 2) + ';--pc2:' + (k + 2) + '"><b>' + r + '</b>up</div>';
+    });
+    for (i = 1; i <= 9; i++) for (var b = 1; b <= 3; b++) {
+      var n = (i - 1) * 3 + b;
+      h += '<div class="c' + (n % 9 === 0 ? ' hi' : '') + '" style="--dc:' + (i + 1) + ';--dr:' + (b + 1) + ';--pc:' + (b + 1) + ';--pr:' + (i + 1) +
+        '" aria-label="After ' + n + ' batters: 1 in ' + f(1 / s[n]) + '"><i>' + n + '</i>' + f(1 / s[n]) + '</div>';
+    }
+    box.innerHTML = h;
+  }
+
+  lineScore();
   curva();
   comeCala();
   grazia();

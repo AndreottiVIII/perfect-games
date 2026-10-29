@@ -5,11 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>How it falls · Perfect games</title>
 <meta name="description" content="At every batter a perfect game has about a 1-in-3 chance of ending. It only drops when the pitcher bats.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Big+Shoulders+Stencil+Display:wght@800;900&family=Barlow+Semi+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header class="top">
-  <a class="brand" href="index.html">Perfect games</a>
+  <a class="brand" href="index.html" aria-label="Perfect games">
+    <span class="w"><b>P</b><b>E</b><b>R</b><b>F</b><b>E</b><b>C</b><b>T</b></span>
+    <span class="w"><b>G</b><b>A</b><b>M</b><b>E</b><b>S</b></span>
+    <span class="tag"><span>27 UP · 27 DOWN</span>1908&ndash;2025</span>
+  </a>
   <nav aria-label="Pages">
     <a href="index.html">The curve</a>
     <a href="how-it-falls.html" aria-current="page">How it falls</a>
@@ -28,11 +35,11 @@
   <figure class="chart" id="grafico-come-cala">
     <figcaption>
       <strong>Chance of losing the perfect game at exactly that batter</strong>
-      <span class="note">The gray columns are batters 9, 18 and 27: as long as nobody has reached base, that is always the No. 9 spot in the lineup. The thin vertical lines show the margin of uncertainty (95% interval).</span>
+      <span class="note">The darker columns are batters 9, 18 and 27: as long as nobody has reached base, that is always the No. 9 spot in the lineup. The thin vertical lines show the margin of uncertainty (95% interval).</span>
     </figcaption>
     <div class="legend">
-      <span class="key"><span class="swatch" style="border-color:#b3261e"></span>No DH: the pitcher bats</span>
-      <span class="key"><span class="swatch" style="border-color:#2b2b2b"></span>With DH</span>
+      <span class="key"><span class="swatch" style="border-color:#ffd21f"></span>No DH: the pitcher bats</span>
+      <span class="key"><span class="swatch" style="border-color:#f4f6f1"></span>With DH</span>
       <span class="key"><span class="dot"></span>Fewer than 100 sides still in play: shaky number</span>
     </div>
     <div class="plot"></div>

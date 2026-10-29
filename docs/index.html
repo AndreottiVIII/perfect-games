@@ -5,11 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The curve · Perfect games</title>
 <meta name="description" content="Every baseball game starts out perfect. How many stay that way, batter by batter, from 1908 to 2025.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Big+Shoulders+Stencil+Display:wght@800;900&family=Barlow+Semi+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header class="top">
-  <a class="brand" href="index.html">Perfect games</a>
+  <a class="brand" href="index.html" aria-label="Perfect games">
+    <span class="w"><b>P</b><b>E</b><b>R</b><b>F</b><b>E</b><b>C</b><b>T</b></span>
+    <span class="w"><b>G</b><b>A</b><b>M</b><b>E</b><b>S</b></span>
+    <span class="tag"><span>27 UP · 27 DOWN</span>1908&ndash;2025</span>
+  </a>
   <nav aria-label="Pages">
     <a href="index.html" aria-current="page">The curve</a>
     <a href="how-it-falls.html">How it falls</a>
@@ -22,8 +29,15 @@
 </header>
 
 <main>
-  <h1>Every game starts out perfect. After 9 batters, 1 in 32 still is. After 27, just 1 in 17,457.</h1>
+  <h1>Every game starts out perfect. After 9 batters, <span class="n">1 in 32</span> still is. After 27, just <span class="n">1 in 17,457</span>.</h1>
   <p class="lead">A perfect game is one where none of the 27 opposing batters reaches base: 27 up, 27 down. Every game begins that way. For each team in the field (the pitching side) in every regular-season game from 1908 to 2025, we count how many opposing batters it retires in a row before the first one reaches base.</p>
+
+  <section class="board" aria-label="Line score">
+    <h2>Still perfect: 1 game in&hellip; <small>after each batter, inning by inning</small></h2>
+    <div class="ls" id="line-score"></div>
+    <p class="key">Read it like a line score: each inning, the 1st, 2nd and 3rd batter up. <b>Yellow</b> = once, twice and three times through the lineup.</p>
+  </section>
+
 
   <figure class="chart" id="grafico-curva">
     <figcaption>
@@ -31,8 +45,8 @@
       <span class="note">Log scale: each gridline marks games ten times rarer than the one above.</span>
     </figcaption>
     <div class="legend">
-      <span class="key"><span class="swatch thick" style="border-color:#b3261e"></span>All games, 1908-2025</span>
-      <span class="key"><span class="swatch" style="border-color:#bdbdbd"></span>The seven eras</span>
+      <span class="key"><span class="swatch thick" style="border-color:#f4f6f1"></span>All games, 1908-2025</span>
+      <span class="key"><span class="swatch" style="border-color:#7fae93"></span>The seven eras</span>
     </div>
     <div class="eras"></div>
     <div class="plot"></div>
